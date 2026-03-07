@@ -1,0 +1,7 @@
+node_modules
+snooker-client/node_modules
+snooker-server/node_modules
+snooker-client/dist
+.git
+.env
+service-account.json

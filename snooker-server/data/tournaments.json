@@ -1,0 +1,177 @@
+{
+  "id": "TOURN_1772925977713",
+  "status": "ACTIVE",
+  "players": [
+    "mohamed",
+    "tarik",
+    "fouad",
+    "laga",
+    "amine",
+    "reda",
+    "fahd",
+    "younes",
+    "simo",
+    "test1",
+    "test2",
+    "test3"
+  ],
+  "bracket": [
+    [
+      {
+        "id": "M1",
+        "player1": "mohamed",
+        "player2": "BYE",
+        "winner": "mohamed",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M2",
+        "player1": "tarik",
+        "player2": "BYE",
+        "winner": "tarik",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M3",
+        "player1": "fahd",
+        "player2": "BYE",
+        "winner": "fahd",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M4",
+        "player1": "test3",
+        "player2": "BYE",
+        "winner": "test3",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M5",
+        "player1": "test2",
+        "player2": "reda",
+        "winner": "test2",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M6",
+        "player1": "younes",
+        "player2": "fouad",
+        "winner": "younes",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M7",
+        "player1": "test1",
+        "player2": "amine",
+        "winner": "test1",
+        "tableId": null,
+        "status": "COMPLETED"
+      },
+      {
+        "id": "M8",
+        "player1": "simo",
+        "player2": "laga",
+        "winner": null,
+        "tableId": "TABLE1",
+        "status": "IN_PROGRESS"
+      }
+    ],
+    [
+      {
+        "id": "M9",
+        "player1": "mohamed",
+        "player2": "tarik",
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          1,
+          2
+        ]
+      },
+      {
+        "id": "M10",
+        "player1": "fahd",
+        "player2": "test3",
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          3,
+          4
+        ]
+      },
+      {
+        "id": "M11",
+        "player1": "test2",
+        "player2": "younes",
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          5,
+          6
+        ]
+      },
+      {
+        "id": "M12",
+        "player1": "test1",
+        "player2": null,
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          7,
+          8
+        ]
+      }
+    ],
+    [
+      {
+        "id": "M13",
+        "player1": null,
+        "player2": null,
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          9,
+          10
+        ]
+      },
+      {
+        "id": "M14",
+        "player1": null,
+        "player2": null,
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          11,
+          12
+        ]
+      }
+    ],
+    [
+      {
+        "id": "M15",
+        "player1": null,
+        "player2": null,
+        "winner": null,
+        "tableId": null,
+        "status": "PENDING",
+        "dependsOn": [
+          13,
+          14
+        ]
+      }
+    ]
+  ],
+  "champion": null
+}

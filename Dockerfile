@@ -1,5 +1,5 @@
-# Use a lightweight Node image (slim is more compatible than alpine for some native modules)
-FROM node:22-slim
+# Use a lightweight Node image
+FROM node:22-alpine
 
 # Hugging Face runs as UID 1000, which is the 'node' user
 WORKDIR /home/node/app

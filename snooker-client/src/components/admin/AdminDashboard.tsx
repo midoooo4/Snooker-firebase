@@ -234,17 +234,24 @@ export default function AdminDashboard() {
         if (!confirm('Tirer au sort et commencer le tournoi ?')) return;
 
         try {
+            console.log(`[DEBUG] Starting tournament with players:`, players);
             const token = localStorage.getItem('admin_token');
             const res = await fetch(`${API_URL}/api/admin/tournament/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ players })
             });
+
             if (res.ok) {
+                alert('Tournoi démarré avec succès !');
                 fetchConfigAndTournament();
+            } else {
+                const err = await res.json().catch(() => ({ error: 'Unknown error' }));
+                alert(`Erreur lors du démarrage du tournoi (${res.status}): ${err.error || 'Erreur inconnue'}`);
             }
         } catch (e) {
-            console.error(e);
+            console.error('[DEBUG] startTournament catch:', e);
+            alert(`Erreur réseau : ${e instanceof Error ? e.message : String(e)}`);
         }
     };
 

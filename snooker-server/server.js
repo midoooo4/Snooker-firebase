@@ -222,10 +222,16 @@ app.post('/api/admin/config/price', verifyAdminToken, (req, res) => {
 
 app.post('/api/admin/tournament/create', verifyAdminToken, (req, res) => {
     const { players } = req.body;
+    console.log('[ADMIN] Creating tournament for players:', players);
     if (!players || !Array.isArray(players)) return res.status(400).json({ error: 'Players array required' });
-    const tournament = createTournament(players);
-    if (global.io) global.io.emit('tournament_updated', tournament);
-    res.json({ success: true, tournament });
+    try {
+        const tournament = createTournament(players);
+        if (global.io) global.io.emit('tournament_updated', tournament);
+        res.json({ success: true, tournament });
+    } catch (err) {
+        console.error('[ADMIN] Failed to create tournament:', err);
+        res.status(500).json({ error: err.message });
+    }
 });
 
 app.post('/api/admin/tournament/assign', verifyAdminToken, (req, res) => {

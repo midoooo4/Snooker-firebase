@@ -1,23 +1,30 @@
-# Use a lightweight Node image
-FROM node:22-alpine
+# Use a lightweight Node image (slim is more compatible than alpine for some native modules)
+FROM node:22-slim
 
-# Hugging Face runs as UID 1000, which is the 'node' user in this image
+# Hugging Face runs as UID 1000, which is the 'node' user
 WORKDIR /home/node/app
 
-# Copy all files and set ownership to 'node' user
-COPY --chown=node:node . .
+# Copy package files first to leverage Docker cache
+COPY --chown=node:node snooker-client/package*.json ./snooker-client/
+COPY --chown=node:node snooker-server/package*.json ./snooker-server/
 
-# Switch to the 'node' user for security and HF compatibility
-USER node
-
-# Install dependencies for both client and server manually
+# Install dependencies
 RUN npm install --prefix snooker-client && npm install --prefix snooker-server
 
-# Build the client manually
+# Copy the rest of the application
+COPY --chown=node:node . .
+
+# Ensure data directory exists and is writable by the node user
+RUN mkdir -p snooker-server/data && chown -R node:node snooker-server/data
+
+# Build the client
 RUN npm run build --prefix snooker-client
 
-# Expose port (Hugging Face expects 7860)
+# Hugging Face expects port 7860
 EXPOSE 7860
 
-# Start the server directly
+# Switch to non-root user
+USER node
+
+# Start the server
 CMD ["node", "snooker-server/server.js"]

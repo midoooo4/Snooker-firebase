@@ -392,19 +392,21 @@ app.use((req, res) => {
 });
 
 async function startServer() {
+    // Start listening immediately to "claim" the port and satisfy Hugging Face's startup check
+    server.listen(PORT, '0.0.0.0', () => {
+        console.log(`🚀 Server listening on port ${PORT} (initializing in background...)`);
+        console.log(`Version: 2`);
+    });
+
     try {
         console.log('Initializing rooms...');
         await initRooms();
         console.log('Rooms initialized.');
         initTournament();
+        console.log('🚀 Server initialization complete.');
     } catch (e) {
-        console.error('Failed to init rooms:', e);
+        console.error('Failed to initialize server components:', e);
     }
-
-    server.listen(PORT, '0.0.0.0', () => {
-        console.log(`🚀 Server is fully live on port ${PORT}`);
-        console.log(`Version: 2`);
-    });
 }
 
 startServer();

@@ -293,8 +293,9 @@ export default function AdminDashboard() {
 
     const statEntries = Object.entries(stats);
     const totalOwed = statEntries.reduce((sum, [, s]) => sum + s.amountOwed, 0);
-    const totalMatchesPlayed = Math.floor(statEntries.reduce((sum, [, s]) => sum + s.matches, 0) / 2);
-    const calculatedTotalEarnings = totalMatchesPlayed * 20;
+    // Total frames played across all players / 2 (since each frame is recorded for both players)
+    const totalFramesPlayed = Math.floor(statEntries.reduce((sum, [, s]) => sum + s.matches, 0) / 2);
+    const calculatedTotalEarnings = totalFramesPlayed * pricePerFrame;
 
     if (showAdminLogin && !isAdmin) {
         return (

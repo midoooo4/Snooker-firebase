@@ -41,9 +41,15 @@ async function getPlayerStats() {
 async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePerFrame) {
     if (!winner || !loser) return;
 
-    // Loser pays for all frames played in the match.
-    // For a normal 1-frame match or any match, they pay framesPlayed * pricePerFrame.
-    // pricePerFrame defaults to 20 if not provided.
+    // We now treat each frame as a "match" entry in the stats for more accurate accounting.
+    // However, the framesPlayed passed here is the total frames in the match (e.g., 2+0 = 2).
+    // The frames won/lost are determined by the match type or specific counts.
+    // For simplicity, we assume winner and loser won their respective frames.
+    // If framesPlayed is 2 (e.g. 2-0), winner gets 2 wins, loser gets 2 losses.
+
+    // BUT, the gameMachine already tells us total framesPlayed. 
+    // Let's assume the winner won all frames for revenue purposes (loser pays everything).
+
     const price = pricePerFrame && pricePerFrame > 0 ? pricePerFrame : 20;
     const frames = framesPlayed && framesPlayed > 0 ? framesPlayed : 1;
     const tariff = frames * price;
@@ -53,11 +59,13 @@ async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePe
         if (!stats[winner]) stats[winner] = { wins: 0, losses: 0, matches: 0, amountOwed: 0, totalPaid: 0 };
         if (!stats[loser]) stats[loser] = { wins: 0, losses: 0, matches: 0, amountOwed: 0, totalPaid: 0 };
 
-        stats[winner].wins++;
-        stats[winner].matches++;
+        // Winner gets one "match" credit but multiple "wins" if it was best of X? 
+        // No, user wants it to look like multiple matches if multiple frames played.
+        stats[winner].wins += frames;
+        stats[winner].matches += frames;
 
-        stats[loser].losses++;
-        stats[loser].matches++;
+        stats[loser].losses += frames;
+        stats[loser].matches += frames;
         stats[loser].amountOwed += tariff;
 
         writeLocalStats(stats);
@@ -76,17 +84,17 @@ async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePe
             const wData = winnerDoc.exists ? winnerDoc.data() : { wins: 0, losses: 0, matches: 0, amountOwed: 0, totalPaid: 0 };
             const lData = loserDoc.exists ? loserDoc.data() : { wins: 0, losses: 0, matches: 0, amountOwed: 0, totalPaid: 0 };
 
-            wData.wins++;
-            wData.matches++;
+            wData.wins += frames;
+            wData.matches += frames;
 
-            lData.losses++;
-            lData.matches++;
+            lData.losses += frames;
+            lData.matches += frames;
             lData.amountOwed += tariff;
 
             t.set(winnerRef, wData);
             t.set(loserRef, lData);
         });
-        console.log(`Successfully recorded match to Firebase: ${winner} beat ${loser}. Loser owes ${tariff} DH`);
+        console.log(`Successfully recorded match to Firebase: ${winner} beat ${loser}. Loser owes ${tariff} DH (${frames} frames)`);
     } catch (err) {
         console.error('Error recording match result:', err);
     }

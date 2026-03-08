@@ -16,7 +16,7 @@ export default function AdminDashboard() {
 
     // Admin Tabs
     const [activeTab, setActiveTab] = useState<'STATS' | 'TOURNAMENT'>('STATS');
-    const [tablesCount, setTablesCount] = useState(4);
+    const [tablesCount, setTablesCount] = useState(1);
     const [pricePerFrame, setPricePerFrame] = useState(20);
     const [tournamentPlayers, setTournamentPlayers] = useState('');
     const [tournament, setTournament] = useState<any>(null);
@@ -205,7 +205,10 @@ export default function AdminDashboard() {
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify({ count: tablesCount })
             });
-            if (res.ok) alert('Nombre de tables mis à jour !');
+            if (res.ok) {
+                alert('Nombre de tables mis à jour !');
+                fetchConfigAndTournament();
+            }
         } catch (e) {
             console.error(e);
         }

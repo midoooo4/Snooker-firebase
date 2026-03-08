@@ -26,7 +26,7 @@ function Home() {
   const [stats, setStats] = useState<Record<string, PlayerStat>>({});
   const [showStats, setShowStats] = useState(false);
   const [nextPlayerName, setNextPlayerName] = useState('');
-  const [tablesCount, setTablesCount] = useState(4);
+  const [tablesCount, setTablesCount] = useState(1);
   const [selectedTable, setSelectedTable] = useState('TABLE1');
   const [tournament, setTournament] = useState<any>(null);
   const [isTournamentMatch, setIsTournamentMatch] = useState(false);
@@ -41,7 +41,10 @@ function Home() {
     try {
       const res = await fetch(`${API_URL}/api/config/tables`);
       const data = await res.json();
-      if (data.count) setTablesCount(data.count);
+      console.log('[DEBUG] Config fetched:', data);
+      if (data && typeof data.count === 'number') {
+        setTablesCount(data.count);
+      }
     } catch (e) {
       console.error('Failed to fetch config', e);
     }
@@ -75,7 +78,8 @@ function Home() {
     // Listen for realtime config updates
     const socket = io(API_URL);
     socket.on('config_updated', (data: { activeTablesCount: number }) => {
-      if (data && data.activeTablesCount) {
+      console.log('[DEBUG] Config updated via socket:', data);
+      if (data && typeof data.activeTablesCount === 'number') {
         setTablesCount(data.activeTablesCount);
       }
     });

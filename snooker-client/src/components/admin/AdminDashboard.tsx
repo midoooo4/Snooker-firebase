@@ -352,8 +352,8 @@ export default function AdminDashboard() {
                                 <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f1c40f', marginTop: '0.25rem' }}>{totalOwed} DH</div>
                             </div>
                             <div style={{ background: 'rgba(52, 152, 219, 0.1)', padding: '1.25rem', borderRadius: '12px', border: '1px solid rgba(52, 152, 219, 0.2)' }}>
-                                <div style={{ fontSize: '0.7rem', color: '#3498db', opacity: 0.8, textTransform: 'uppercase', fontWeight: 'bold' }}>MATCHS JOUÉS</div>
-                                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3498db', marginTop: '0.25rem' }}>{totalMatchesPlayed}</div>
+                                <div style={{ fontSize: '0.7rem', color: '#3498db', opacity: 0.8, textTransform: 'uppercase', fontWeight: 'bold' }}>FRAMES JOUÉES</div>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#3498db', marginTop: '0.25rem' }}>{totalFramesPlayed}</div>
                             </div>
                             <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '1.25rem', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
                                 <div style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', fontWeight: 'bold' }}>PAIEMENTS</div>
@@ -377,7 +377,7 @@ export default function AdminDashboard() {
                                 <div key={name} style={{ display: 'grid', gridTemplateColumns: '2fr 0.5fr 0.5fr 1fr 1.5fr', alignItems: 'center', padding: '1.25rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                                     <div>
                                         <div style={{ fontWeight: 'bold', fontSize: '1.05rem' }}>{name}</div>
-                                        <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>{s.matches} match{s.matches > 1 ? 's' : ''}</div>
+                                        <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>{s.matches} frame{s.matches > 1 ? 's' : ''}</div>
                                     </div>
                                     <div style={{ textAlign: 'center', color: '#2ecc71', fontWeight: 'bold' }}>{s.wins}</div>
                                     <div style={{ textAlign: 'center', color: '#e74c3c', fontWeight: 'bold' }}>{s.losses}</div>

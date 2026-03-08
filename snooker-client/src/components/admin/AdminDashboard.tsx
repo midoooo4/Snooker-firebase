@@ -364,41 +364,43 @@ export default function AdminDashboard() {
                             </div>
                         </div>
 
-                        <div style={{ width: '100%', marginBottom: '2rem' }}>
-                            <div style={{ display: 'grid', gridTemplateColumns: '2fr 0.5fr 0.5fr 1fr 1.5fr', padding: '0.5rem 0', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                                <div>Joueur</div>
-                                <div style={{ textAlign: 'center', color: '#2ecc71' }}>V</div>
-                                <div style={{ textAlign: 'center', color: '#e74c3c' }}>D</div>
-                                <div style={{ textAlign: 'center' }}>Status</div>
-                                <div style={{ textAlign: 'right', color: '#f1c40f' }}>Tarif</div>
-                            </div>
-                            {statEntries.map(([name, s]) => (
-                                <div key={name} style={{ display: 'grid', gridTemplateColumns: '2fr 0.5fr 0.5fr 1fr 1.5fr', alignItems: 'center', padding: '1.25rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                                    <div>
-                                        <div style={{ fontWeight: 'bold', fontSize: '1.05rem' }}>{name}</div>
-                                        <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>{s.matches} match{s.matches > 1 ? 's' : ''}</div>
-                                    </div>
-                                    <div style={{ textAlign: 'center', color: '#2ecc71', fontWeight: 'bold' }}>{s.wins}</div>
-                                    <div style={{ textAlign: 'center', color: '#e74c3c', fontWeight: 'bold' }}>{s.losses}</div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        {s.amountOwed > 0 ? (
-                                            <span style={{ background: '#e74c3c', color: 'white', padding: '3px 8px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: 'bold' }}>DUE</span>
-                                        ) : (
-                                            s.losses > 0 && <span style={{ background: '#2ecc71', color: 'white', padding: '3px 8px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: 'bold' }}>PAID</span>
-                                        )}
-                                    </div>
-                                    <div style={{ textAlign: 'right' }}>
-                                        {s.amountOwed > 0 ? (
-                                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.5rem' }}>
-                                                <span style={{ color: '#f1c40f', fontWeight: 'bold', fontSize: '1.1rem' }}>{s.amountOwed} DH</span>
-                                                <button onClick={() => markPaid(name)} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', background: '#2ecc71', color: 'black', border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }}>✓ Marquer Payé</button>
-                                            </div>
-                                        ) : (
-                                            <span style={{ color: '#2ecc71', fontWeight: 'bold', fontSize: '0.9rem' }}>✓ 0 DH</span>
-                                        )}
-                                    </div>
+                        <div style={{ width: '100%', marginBottom: '2rem', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+                            <div style={{ minWidth: '500px' }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: '2fr 0.5fr 0.5fr 1fr 1.5fr', padding: '0.5rem 0', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                                    <div>Joueur</div>
+                                    <div style={{ textAlign: 'center', color: '#2ecc71' }}>V</div>
+                                    <div style={{ textAlign: 'center', color: '#e74c3c' }}>D</div>
+                                    <div style={{ textAlign: 'center' }}>Status</div>
+                                    <div style={{ textAlign: 'right', color: '#f1c40f' }}>Tarif</div>
                                 </div>
-                            ))}
+                                {statEntries.map(([name, s]) => (
+                                    <div key={name} style={{ display: 'grid', gridTemplateColumns: '2fr 0.5fr 0.5fr 1fr 1.5fr', alignItems: 'center', padding: '1.25rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                                        <div>
+                                            <div style={{ fontWeight: 'bold', fontSize: '1.05rem' }}>{name}</div>
+                                            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)' }}>{s.matches} match{s.matches > 1 ? 's' : ''}</div>
+                                        </div>
+                                        <div style={{ textAlign: 'center', color: '#2ecc71', fontWeight: 'bold' }}>{s.wins}</div>
+                                        <div style={{ textAlign: 'center', color: '#e74c3c', fontWeight: 'bold' }}>{s.losses}</div>
+                                        <div style={{ textAlign: 'center' }}>
+                                            {s.amountOwed > 0 ? (
+                                                <span style={{ background: '#e74c3c', color: 'white', padding: '3px 8px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: 'bold' }}>DUE</span>
+                                            ) : (
+                                                s.losses > 0 && <span style={{ background: '#2ecc71', color: 'white', padding: '3px 8px', borderRadius: '6px', fontSize: '0.65rem', fontWeight: 'bold' }}>PAID</span>
+                                            )}
+                                        </div>
+                                        <div style={{ textAlign: 'right' }}>
+                                            {s.amountOwed > 0 ? (
+                                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.5rem' }}>
+                                                    <span style={{ color: '#f1c40f', fontWeight: 'bold', fontSize: '1.1rem' }}>{s.amountOwed} DH</span>
+                                                    <button onClick={() => markPaid(name)} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', background: '#2ecc71', color: 'black', border: 'none', borderRadius: '8px', fontSize: '0.75rem', fontWeight: 'bold', cursor: 'pointer' }}>✓ Marquer Payé</button>
+                                                </div>
+                                            ) : (
+                                                <span style={{ color: '#2ecc71', fontWeight: 'bold', fontSize: '0.9rem' }}>✓ 0 DH</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -416,16 +418,20 @@ export default function AdminDashboard() {
                     <>
                         <div style={{ marginBottom: '2rem', background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '8px' }}>
                             <h3 style={{ marginTop: 0 }}>⚙️ Configuration des Tables</h3>
-                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem' }}>
+                            <div className="config-row">
                                 <label style={{ minWidth: '180px' }}>Nombre de tables actives :</label>
-                                <input type="number" min="1" max="10" value={tablesCount} onChange={e => setTablesCount(parseInt(e.target.value) || 1)} style={{ padding: '0.5rem', width: '60px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white' }} />
-                                <button onClick={saveTablesCount} style={{ padding: '0.5rem 1rem', background: '#f1c40f', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Enregistrer</button>
+                                <div className="config-actions">
+                                    <input type="number" min="1" max="10" value={tablesCount} onChange={e => setTablesCount(parseInt(e.target.value) || 1)} style={{ padding: '0.5rem', width: '60px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white' }} />
+                                    <button onClick={saveTablesCount} style={{ padding: '0.5rem 1rem', background: '#f1c40f', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Enregistrer</button>
+                                </div>
                             </div>
-                            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                            <div className="config-row" style={{ marginBottom: 0 }}>
                                 <label style={{ minWidth: '180px' }}>💰 Tarif par frame :</label>
-                                <input type="number" min="5" max="500" value={pricePerFrame} onChange={e => setPricePerFrame(parseInt(e.target.value) || 20)} style={{ padding: '0.5rem', width: '60px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white' }} />
-                                <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>DH</span>
-                                <button onClick={savePricePerFrame} style={{ padding: '0.5rem 1rem', background: '#f1c40f', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Enregistrer</button>
+                                <div className="config-actions">
+                                    <input type="number" min="5" max="500" value={pricePerFrame} onChange={e => setPricePerFrame(parseInt(e.target.value) || 20)} style={{ padding: '0.5rem', width: '60px', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white' }} />
+                                    <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem' }}>DH</span>
+                                    <button onClick={savePricePerFrame} style={{ padding: '0.5rem 1rem', background: '#f1c40f', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>Enregistrer</button>
+                                </div>
                             </div>
                         </div>
 

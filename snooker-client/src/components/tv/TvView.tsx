@@ -29,7 +29,9 @@ export default function TvView() {
 
     // --- Persistent victory message (stays at least 5 seconds) ---
     const [victoryMessage, setVictoryMessage] = useState<{ label: string; value: string; badge: string } | null>(null);
+    const [foulOverlay, setFoulOverlay] = useState<{ player: string; points: number } | null>(null);
     const victoryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const foulTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         if (!gameState) return;
@@ -56,6 +58,19 @@ export default function TvView() {
             }, 6000); // 6 seconds
         }
     }, [gameState?.lastFrameWinner, gameState?.isMatchOver, gameState?.matchWinner]);
+
+    useEffect(() => {
+        if (gameState?.lastFoul) {
+            setFoulOverlay(gameState.lastFoul);
+            if (foulTimerRef.current) clearTimeout(foulTimerRef.current);
+            foulTimerRef.current = setTimeout(() => {
+                setFoulOverlay(null);
+                foulTimerRef.current = null;
+            }, 6000); // 6 seconds
+        } else {
+            setFoulOverlay(null);
+        }
+    }, [gameState?.lastFoul?.timestamp]);
 
     const elapsed = gameState?.matchStartTime && !gameState.isWaitingForMatch ? currentTime - gameState.matchStartTime : 0;
 
@@ -138,7 +153,14 @@ export default function TvView() {
                         <div className="break-value">{gameState.currentBreak}</div>
                     </div>
                 )}
-
+                {/* Foul Overlay */}
+                {foulOverlay && !victoryMessage && (
+                    <div className="break-overlay foul-overlay" style={{ border: '4px solid #ff4757', boxShadow: '0 0 50px rgba(255, 71, 87, 0.4)' }}>
+                        <div className="break-label" style={{ color: '#ff4757' }}>FAUTE !</div>
+                        <div className="break-value" style={{ color: '#ff4757' }}>{foulOverlay.points}</div>
+                        <div className="break-badge" style={{ background: '#ff4757', color: 'white' }}>{foulOverlay.player}</div>
+                    </div>
+                )}
                 {/* Persistent Victory Overlay (stays 6 seconds) */}
                 {victoryMessage && (
                     <div className="break-overlay winner-overlay century-glow">

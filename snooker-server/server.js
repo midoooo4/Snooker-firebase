@@ -176,7 +176,7 @@ function loadConfig() {
     } catch (e) {
         console.error('Error reading config file:', e);
     }
-    return { activeTablesCount: 4, pricePerFrame: 20 };
+    return { activeTablesCount: 1, pricePerFrame: 20 };
 }
 
 function saveConfig() {
@@ -188,7 +188,7 @@ function saveConfig() {
 }
 
 const savedConfig = loadConfig();
-let activeTablesCount = savedConfig.activeTablesCount || 4;
+let activeTablesCount = savedConfig.activeTablesCount || 1;
 let pricePerFrame = savedConfig.pricePerFrame || 20;
 console.log(`[CONFIG] Loaded: ${activeTablesCount} tables, ${pricePerFrame} DH/frame`);
 

@@ -3,18 +3,18 @@
     "gameState": {
       "players": [
         "simo",
-        "laga"
+        "lahcen"
       ],
       "matchType": "FRAME_UNIQUE",
       "framesWon": [
-        0,
+        1,
         0
       ],
       "scores": [
         0,
         0
       ],
-      "activePlayer": 0,
+      "activePlayer": 1,
       "remainingReds": 15,
       "phase": "REDS",
       "isColorTurn": false,
@@ -22,18 +22,60 @@
       "currentBreak": 0,
       "isFreeballAvailable": false,
       "bestBreaks": [
-        0,
-        0
+        33,
+        16
       ],
       "pottedBalls": [
         [],
         []
       ],
-      "lastFrameWinner": null,
+      "lastFrameWinner": "simo",
       "isWaitingForMatch": true,
-      "matchStartTime": null,
-      "history": [],
-      "queue": []
+      "matchStartTime": 1772928377020,
+      "queue": [],
+      "lastFoul": null,
+      "history": [
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            1,
+            0
+          ],
+          "scores": [
+            0,
+            0
+          ],
+          "activePlayer": 1,
+          "remainingReds": 15,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 0,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            33,
+            16
+          ],
+          "pottedBalls": [
+            [],
+            []
+          ],
+          "lastFrameWinner": "simo",
+          "isWaitingForMatch": true,
+          "matchStartTime": 1772928377020,
+          "queue": [],
+          "lastFoul": null,
+          "matchWinner": "simo",
+          "isMatchOver": true,
+          "history": []
+        }
+      ],
+      "matchWinner": "simo",
+      "isMatchOver": true
     }
   },
   "TABLE2": {

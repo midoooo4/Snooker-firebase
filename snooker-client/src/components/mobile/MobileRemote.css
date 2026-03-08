@@ -73,8 +73,21 @@
 }
 
 .player-score-box.active {
-    background: #15221c;
-    /* Very subtle dark green tint */
+    background: #1a2f26;
+    /* Slightly brighter green tint */
+    border-bottom: 4px solid #2ecc71;
+    /* Thick green bottom border */
+    box-shadow: inset 0 0 20px rgba(46, 204, 113, 0.2);
+}
+
+.player-score-box.active .player-label {
+    color: #2ecc71;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.player-score-box.active .score-value {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .player-label {

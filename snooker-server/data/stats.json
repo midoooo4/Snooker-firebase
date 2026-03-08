@@ -1,37 +1,9 @@
 {
-  "younes": {
-    "wins": 2,
-    "losses": 0,
+  "fouad": {
+    "wins": 1,
+    "losses": 1,
     "matches": 2,
-    "amountOwed": 0,
-    "totalPaid": 0
-  },
-  "tarik": {
-    "wins": 0,
-    "losses": 1,
-    "matches": 1,
     "amountOwed": 20,
-    "totalPaid": 0
-  },
-  "Player 1": {
-    "wins": 1,
-    "losses": 0,
-    "matches": 1,
-    "amountOwed": 0,
-    "totalPaid": 0
-  },
-  "Player 2": {
-    "wins": 0,
-    "losses": 1,
-    "matches": 1,
-    "amountOwed": 60,
-    "totalPaid": 0
-  },
-  "test2": {
-    "wins": 1,
-    "losses": 0,
-    "matches": 1,
-    "amountOwed": 0,
     "totalPaid": 0
   },
   "reda": {
@@ -41,25 +13,46 @@
     "amountOwed": 20,
     "totalPaid": 0
   },
-  "fouad": {
+  "simo": {
+    "wins": 4,
+    "losses": 0,
+    "matches": 4,
+    "amountOwed": 0,
+    "totalPaid": 0
+  },
+  "ahmed": {
     "wins": 0,
     "losses": 1,
     "matches": 1,
     "amountOwed": 20,
     "totalPaid": 0
   },
-  "test1": {
-    "wins": 1,
-    "losses": 0,
-    "matches": 1,
-    "amountOwed": 0,
+  "lahcen": {
+    "wins": 2,
+    "losses": 2,
+    "matches": 4,
+    "amountOwed": 40,
     "totalPaid": 0
   },
   "amine": {
     "wins": 0,
     "losses": 1,
     "matches": 1,
-    "amountOwed": 60,
+    "amountOwed": 20,
+    "totalPaid": 0
+  },
+  "laga": {
+    "wins": 1,
+    "losses": 1,
+    "matches": 2,
+    "amountOwed": 20,
+    "totalPaid": 0
+  },
+  "tarik": {
+    "wins": 0,
+    "losses": 1,
+    "matches": 1,
+    "amountOwed": 20,
     "totalPaid": 0
   }
 }

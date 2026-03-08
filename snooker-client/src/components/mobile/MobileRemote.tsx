@@ -58,10 +58,10 @@ export default function MobileRemote() {
     };
 
     const balls = [
-        { name: 'RED', label: 'ROUGE', color: '#e74c3c', value: 1, action: 'POT_RED' },
+        { name: 'RED', label: 'ROUGE', color: '#ff1744', value: 1, action: 'POT_RED' },
         { name: 'YELLOW', label: 'JAUNE', color: '#f1c40f', value: 2, action: 'POT_COLOR' },
         { name: 'GREEN', label: 'VERTE', color: '#2ecc71', value: 3, action: 'POT_COLOR' },
-        { name: 'BROWN', label: 'MARRON', color: '#b35d1e', value: 4, action: 'POT_COLOR' },
+        { name: 'BROWN', label: 'MARRON', color: '#795548', value: 4, action: 'POT_COLOR' },
         { name: 'BLUE', label: 'BLEUE', color: '#3498db', value: 5, action: 'POT_COLOR' },
         { name: 'PINK', label: 'ROSE', color: '#e84393', value: 6, action: 'POT_COLOR' },
         { name: 'BLACK', label: 'NOIRE', color: '#222f3e', value: 7, action: 'POT_COLOR' },

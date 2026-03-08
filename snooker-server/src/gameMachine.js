@@ -33,6 +33,7 @@ function createGame(players = ['Player 1', 'Player 2'], matchType = 'FRAME_UNIQU
         bestBreaks: [0, 0],
         pottedBalls: [[], []], // Track balls potted in current frame: [player1Balls, player2Balls]
         lastFrameWinner: null,
+        lastFoul: null, // { player: string, points: number, timestamp: number }
         isWaitingForMatch: true,
         matchStartTime: null,
         history: [],
@@ -70,6 +71,7 @@ function handleAction(prevState, action, payload) {
     switch (action) {
         case 'POT_RED':
             state.lastFrameWinner = null;
+            state.lastFoul = null;
             state.isWaitingForMatch = false;
             if (state.remainingReds > 0) {
                 state.remainingReds--;
@@ -86,11 +88,12 @@ function handleAction(prevState, action, payload) {
 
         case 'POT_COLOR':
             state.lastFrameWinner = null;
+            state.lastFoul = null;
             state.isWaitingForMatch = false;
             const value = payload.value; // Expected ball value
             state.scores[state.activePlayer] += value;
             state.currentBreak += value;
-            
+
             // Find the ball type by value for the pottedBalls tracker
             const ballType = Object.keys(BALL_VALUES).find(key => BALL_VALUES[key] === value);
             if (ballType) state.pottedBalls[state.activePlayer].push(ballType);
@@ -105,6 +108,12 @@ function handleAction(prevState, action, payload) {
             const opponent = state.activePlayer === 0 ? 1 : 0;
             state.scores[opponent] += foulPoints;
 
+            state.lastFoul = {
+                player: state.players[state.activePlayer],
+                points: foulPoints,
+                timestamp: Date.now()
+            };
+
             if (payload.isRedPotted) {
                 if (state.remainingReds > 0) state.remainingReds--;
             }
@@ -113,6 +122,7 @@ function handleAction(prevState, action, payload) {
             break;
 
         case 'MISS': // Missed pot, no foul, just pass turn
+            state.lastFoul = null;
             switchPlayer(state);
             break;
 

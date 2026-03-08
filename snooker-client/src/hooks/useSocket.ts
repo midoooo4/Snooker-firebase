@@ -22,6 +22,7 @@ export interface GameState {
     isMatchOver?: boolean;
     matchWinner?: string | null;
     pottedBalls?: string[][];
+    lastFoul?: { player: string; points: number; timestamp: number } | null;
 }
 
 const SERVER_URL = import.meta.env.PROD ? 'https://ero0ck-snooker-live.hf.space' : 'http://localhost:3001';

@@ -127,7 +127,7 @@
 }
 
 .ball-red {
-    background: radial-gradient(circle at 30% 30%, #ff4d4d, #990000);
+    background: radial-gradient(circle at 30% 30%, #ff1744, #b71c1c);
 }
 
 .ball-yellow {
@@ -139,7 +139,7 @@
 }
 
 .ball-brown {
-    background: radial-gradient(circle at 30% 30%, #a52a2a, #5c1616);
+    background: radial-gradient(circle at 30% 30%, #795548, #3e2723);
 }
 
 .ball-blue {

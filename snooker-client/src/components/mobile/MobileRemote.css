@@ -1,12 +1,14 @@
 .mobile-app.dark-theme {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100svh;
+    /* Smart Viewport Height for mobile */
     background-color: #0d1218;
-    /* Dark navy background */
     color: #f1f2f6;
     font-family: var(--font-family);
-    padding-bottom: 2rem;
+    overflow: hidden;
+    /* Prevent body scroll */
 }
 
 /* Header */
@@ -165,7 +167,7 @@
 .target-pill-container {
     display: flex;
     justify-content: center;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 }
 
 .target-pill {

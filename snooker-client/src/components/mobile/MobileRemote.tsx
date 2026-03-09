@@ -53,6 +53,18 @@ export default function MobileRemote() {
         setShowFoulModal(false);
     };
 
+    const toggleFullscreen = () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    };
+
     const handleReset = () => {
         handleAction('RESET_GAME');
     };
@@ -73,11 +85,11 @@ export default function MobileRemote() {
                 <button onClick={() => navigate('/')} className="btn-back-lobby">
                     <span>⬅</span> Lobby
                 </button>
-                <div className="session-info">
-                    Session <span className="session-number">LIGUE</span>
+                <div onClick={toggleFullscreen} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                    ⛶ <span className="session-number">LIGUE</span>
                 </div>
                 <div onClick={() => navigate(`/tv/${roomCode}`)} className="tv-link" style={{ cursor: 'pointer' }}>
-                    📺 Écran TV
+                    📺 TV
                 </div>
             </header>
 

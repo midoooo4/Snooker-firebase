@@ -88,6 +88,22 @@ export default function TvView() {
     const minutes = Math.floor(elapsed / 60000);
     const seconds = Math.floor((elapsed % 60000) / 1000).toString().padStart(2, '0');
 
+    // Calculate points remaining on table
+    const calculateRemaining = () => {
+        if (gameState.phase === 'REDS') {
+            return (gameState.remainingReds * 8) + 27;
+        } else {
+            const colors = [2, 3, 4, 5, 6, 7];
+            let total = 0;
+            for (let i = (gameState.currentColorIndex || 0); i < colors.length; i++) {
+                total += colors[i];
+            }
+            return total;
+        }
+    };
+
+    const pointsRemaining = calculateRemaining();
+
     return (
         <div className="tv-app" style={{ overflow: 'hidden' }}>
             <div className="tv-layout centered-layout">
@@ -116,7 +132,10 @@ export default function TvView() {
                         <div className="vs-circle">VS</div>
                         {gameState.scores && (
                             <div className="score-diff-badge">
-                                Difference: {Math.abs(gameState.scores[0] - gameState.scores[1])}
+                                <div>Difference: {Math.abs(gameState.scores[0] - gameState.scores[1])}</div>
+                                <div style={{ opacity: 0.8, fontSize: '0.8em', borderTop: '1px solid rgba(0,0,0,0.1)', marginTop: '4px', paddingTop: '4px' }}>
+                                    Remaining: {pointsRemaining}
+                                </div>
                             </div>
                         )}
                         {gameState.matchType && gameState.matchType !== 'FRAME_UNIQUE' && (

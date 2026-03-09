@@ -54,29 +54,27 @@ export default function MobileRemote() {
     };
 
     const toggleFullscreen = () => {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+        const isStandalone = (window.navigator as any).standalone || window.matchMedia('(display-mode: standalone)').matches;
+
+        if (isIOS && !isStandalone) {
+            alert("Sur iPhone, Apple ne permet pas le plein écran via un bouton. \n\nPour une expérience complète sans barre d'adresse :\n1. Cliquez sur le bouton de partage (carré avec flèche)\n2. Sélectionnez 'Sur l'écran d'accueil'\n3. Lancez l'application depuis votre écran d'accueil !");
+            return;
+        }
+
         const doc = document.documentElement as any;
         const _document = document as any;
-
+        // ... previous robust logic remains
         if (!document.fullscreenElement && !_document.webkitFullscreenElement && !_document.mozFullScreenElement && !_document.msFullscreenElement) {
-            if (doc.requestFullscreen) {
-                doc.requestFullscreen();
-            } else if (doc.webkitRequestFullscreen) {
-                doc.webkitRequestFullscreen();
-            } else if (doc.mozRequestFullScreen) {
-                doc.mozRequestFullScreen();
-            } else if (doc.msRequestFullscreen) {
-                doc.msRequestFullscreen();
-            }
+            if (doc.requestFullscreen) { doc.requestFullscreen(); }
+            else if (doc.webkitRequestFullscreen) { doc.webkitRequestFullscreen(); }
+            else if (doc.mozRequestFullScreen) { doc.mozRequestFullScreen(); }
+            else if (doc.msRequestFullscreen) { doc.msRequestFullscreen(); }
         } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (_document.webkitExitFullscreen) {
-                _document.webkitExitFullscreen();
-            } else if (_document.mozCancelFullScreen) {
-                _document.mozCancelFullScreen();
-            } else if (_document.msExitFullscreen) {
-                _document.msExitFullscreen();
-            }
+            if (document.exitFullscreen) { document.exitFullscreen(); }
+            else if (_document.webkitExitFullscreen) { _document.webkitExitFullscreen(); }
+            else if (_document.mozCancelFullScreen) { _document.mozCancelFullScreen(); }
+            else if (_document.msExitFullscreen) { _document.msExitFullscreen(); }
         }
     };
 

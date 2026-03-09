@@ -31,7 +31,7 @@ function createGame(players = ['Player 1', 'Player 2'], matchType = 'FRAME_UNIQU
         currentBreak: 0,
         isFreeballAvailable: false, // Set to true after a foul (simplified implementation, normally requires being snookered)
         bestBreaks: [0, 0],
-        pottedBalls: [[], []], // Track balls potted in current frame: [player1Balls, player2Balls]
+        pottedBalls: { "0": [], "1": [] }, // Track balls potted in current frame: { 0: player1Balls, 1: player2Balls }
         lastFrameWinner: null,
         lastFoul: null, // { player: string, points: number, timestamp: number }
         isWaitingForMatch: true,
@@ -49,9 +49,16 @@ function cloneState(state) {
 function switchPlayer(state) {
     state.activePlayer = state.activePlayer === 0 ? 1 : 0;
     state.currentBreak = 0;
-    state.isFreeballAvailable = false; // Reset freeball on switch player
+    state.isFreeballAvailable = false;
+
+    // Logic: If on colors turn and player switches, the table resets to REDS (if available) or sequence
     if (state.phase === 'REDS') {
-        state.isColorTurn = false; // Next player always starts with a RED if in REDS phase
+        state.isColorTurn = false;
+        // If no reds left and player missed their color turn, we MUST move to sequence
+        if (state.remainingReds === 0) {
+            state.phase = 'COLORS';
+            state.currentColorIndex = 0;
+        }
     }
 }
 
@@ -80,10 +87,8 @@ function handleAction(prevState, action, payload) {
             state.currentBreak += BALL_VALUES.RED;
             state.pottedBalls[state.activePlayer].push('RED');
 
-            // Advance phase merely for display purposes
-            if (state.remainingReds === 0 && state.phase === 'REDS') {
-                state.phase = 'COLORS';
-            }
+            // After a red, it's ALWAYS a color turn
+            state.isColorTurn = true;
             break;
 
         case 'POT_COLOR':
@@ -100,6 +105,19 @@ function handleAction(prevState, action, payload) {
 
             if (state.currentBreak > state.bestBreaks[state.activePlayer]) {
                 state.bestBreaks[state.activePlayer] = state.currentBreak;
+            }
+
+            // Game state progression
+            if (state.phase === 'REDS') {
+                state.isColorTurn = false; // Back to REDS (if reds left)
+                // If this was the color after the LAST red, transition to sequence
+                if (state.remainingReds === 0) {
+                    state.phase = 'COLORS';
+                    state.currentColorIndex = 0;
+                }
+            } else {
+                // Already in colors phase, we advance the sequence
+                state.currentColorIndex++;
             }
             break;
 
@@ -184,7 +202,7 @@ function handleAction(prevState, action, payload) {
             state.isColorTurn = false;
             state.currentColorIndex = 0;
             state.currentBreak = 0;
-            state.pottedBalls = [[], []];
+            state.pottedBalls = { "0": [], "1": [] };
             state.isFreeballAvailable = false;
 
             if (isMatchOver) {

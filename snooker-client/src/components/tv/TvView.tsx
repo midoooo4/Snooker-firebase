@@ -114,7 +114,7 @@ export default function TvView() {
 
                         {/* Potted Balls Tracker */}
                         <div className="potted-balls-container">
-                            {gameState.pottedBalls && gameState.pottedBalls[0] && gameState.pottedBalls[0].map((ball: string, idx: number) => (
+                            {gameState.pottedBalls && gameState.pottedBalls[0] && gameState.pottedBalls[0].slice(-8).map((ball: string, idx: number) => (
                                 <div key={idx} className={`mini-ball ball-${ball.toLowerCase()}`}></div>
                             ))}
                         </div>
@@ -129,17 +129,20 @@ export default function TvView() {
                     </div>
 
                     <div className="vs-divider flex-col">
-                        <div className="vs-circle">VS</div>
                         {gameState.scores && (
-                            <div className="score-diff-badge">
-                                <div>Difference: {Math.abs(gameState.scores[0] - gameState.scores[1])}</div>
-                                <div style={{ opacity: 0.8, fontSize: '0.8em', borderTop: '1px solid rgba(0,0,0,0.1)', marginTop: '4px', paddingTop: '4px' }}>
-                                    Remaining: {pointsRemaining}
+                            <div className="match-stats-panel">
+                                <div className="stat-box diff-box">
+                                    <span className="stat-label">DIFFERENCE</span>
+                                    <span className="stat-value">{Math.abs(gameState.scores[0] - gameState.scores[1])}</span>
+                                </div>
+                                <div className="stat-box rem-box">
+                                    <span className="stat-label">REMAINING</span>
+                                    <span className="stat-value">{pointsRemaining}</span>
                                 </div>
                             </div>
                         )}
                         {gameState.matchType && gameState.matchType !== 'FRAME_UNIQUE' && (
-                            <div className="match-type-badge">
+                            <div className="match-type-badge" style={{ marginTop: '1rem' }}>
                                 {gameState.matchType === '3' ? 'A2' : gameState.matchType === '5' ? 'A3' : gameState.matchType === '7' ? 'A4' : `BO${gameState.matchType}`}
                             </div>
                         )}
@@ -150,7 +153,7 @@ export default function TvView() {
 
                         {/* Potted Balls Tracker */}
                         <div className="potted-balls-container">
-                            {gameState.pottedBalls && gameState.pottedBalls[1] && gameState.pottedBalls[1].map((ball: string, idx: number) => (
+                            {gameState.pottedBalls && gameState.pottedBalls[1] && gameState.pottedBalls[1].slice(-8).map((ball: string, idx: number) => (
                                 <div key={idx} className={`mini-ball ball-${ball.toLowerCase()}`}></div>
                             ))}
                         </div>

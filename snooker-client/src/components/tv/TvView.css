@@ -169,20 +169,53 @@
 }
 
 /* Score Difference Badge */
-.score-diff-badge {
-    margin-top: 10px;
-    background: #ffd700;
-    color: #000;
-    padding: 8px 16px;
-    border-radius: 16px;
-    font-size: 0.85rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
-    animation: pulse 2s infinite;
+/* Match Stats Panel (Replacing VS Circle) */
+.match-stats-panel {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1.5vh;
+    min-width: 12vw;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2vh 1vw;
+    backdrop-filter: blur(5px);
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box .stat-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    margin-bottom: 0.5vh;
+}
+
+.stat-box .stat-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.diff-box .stat-value {
+    color: #f1c40f;
+    /* Gold for difference */
+}
+
+.rem-box .stat-value {
+    color: #2ecc71;
+    /* Green for remaining */
+    opacity: 0.9;
+}
+
+/* Redefine VS-Circle placeholder */
+.vs-circle {
+    display: none;
 }
 
 @keyframes pulse {

@@ -55,7 +55,7 @@ export default function TvView() {
             victoryTimerRef.current = setTimeout(() => {
                 setVictoryMessage(null);
                 victoryTimerRef.current = null;
-            }, 6000); // 6 seconds
+            }, 7000); // 7 seconds
         }
     }, [gameState?.lastFrameWinner, gameState?.isMatchOver, gameState?.matchWinner]);
 
@@ -66,7 +66,7 @@ export default function TvView() {
             foulTimerRef.current = setTimeout(() => {
                 setFoulOverlay(null);
                 foulTimerRef.current = null;
-            }, 6000); // 6 seconds
+            }, 7000); // 7 seconds
         } else {
             setFoulOverlay(null);
         }
@@ -139,7 +139,11 @@ export default function TvView() {
                                 </div>
                                 <div className="stat-box rem-box">
                                     <span className="stat-label">REMAINING</span>
-                                    <span className="stat-value">{pointsRemaining}</span>
+                                    <span className="stat-value" style={{
+                                        color: Math.abs(gameState.scores[0] - gameState.scores[1]) > pointsRemaining ? '#ff4757' : '#2ecc71'
+                                    }}>
+                                        {pointsRemaining}
+                                    </span>
                                 </div>
                             </div>
                         )}

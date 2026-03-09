@@ -1,192 +1,44 @@
-/* --- Layout & Background --- */
-.premium-bg {
-  background: radial-gradient(circle at top center, #112a14 0%, var(--color-bg) 100%);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4rem 1rem;
-  overflow-x: hidden;
-}
-
-.home-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  width: 100%;
-  max-width: 480px;
-  animation: slideUp var(--transition-slow);
-}
-
-/* --- Glass Panels --- */
-.glass-panel {
-  background: var(--color-surface);
-  backdrop-filter: blur(var(--glass-blur));
-  -webkit-backdrop-filter: blur(var(--glass-blur));
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--glass-shadow);
-  padding: 2.5rem;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  transition: border-color var(--transition-base), transform var(--transition-base);
-}
-
-.glass-panel::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-}
-
-.glass-panel:hover {
-  border-color: var(--color-border-bright);
-}
-
-.main-panel {
-  border-top: 2px solid var(--color-accent-green-glow);
-}
-
-/* --- Typography Overrides --- */
-h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(to bottom, #fff 0%, #aaa 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* --- Form Elements --- */
-.input-group {
-  margin-bottom: 1.5rem;
-}
-
-label {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-dim);
-  margin-bottom: 0.75rem;
-}
-
-input[type="text"],
-input[type="password"],
-select {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid var(--color-border);
-  color: #fff;
-  padding: 0.875rem 1rem;
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  transition: all var(--transition-fast);
-  outline: none;
-}
-
-input:focus,
-select:focus {
-  border-color: var(--color-accent-green);
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 0 4px var(--color-accent-green-glow);
-}
-
-/* --- Premium Buttons --- */
-.btn-primary {
-  background: var(--color-accent-green);
-  color: #000;
-  padding: 1.25rem;
-  border-radius: var(--radius-md);
-  font-weight: 800;
-  font-size: 1.1rem;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  transition: all var(--transition-spring);
-  box-shadow: 0 4px 20px var(--color-accent-green-glow);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.1);
-  box-shadow: 0 8px 30px var(--color-accent-green-glow);
-}
-
-.btn-primary:active {
-  transform: translateY(0) scale(0.98);
-}
-
-.btn-outline {
-  background: transparent;
-  color: #fff;
-  border: 1px solid var(--color-border-bright);
-  padding: 1.125rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  transition: all var(--transition-base);
+#root {
   width: 100%;
 }
 
-.btn-outline:hover {
-  background: var(--color-surface-hover);
-  border-color: #fff;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
 
-/* --- Action Buttons (Queue) --- */
-.action-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--transition-fast);
-  border: 1px solid transparent;
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-.edit-btn {
-  color: var(--color-accent-blue);
-  background: rgba(52, 152, 219, 0.1);
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.delete-btn {
-  color: var(--color-accent-red);
-  background: rgba(255, 71, 87, 0.1);
-}
-
-.action-btn:hover {
-  transform: scale(1.1);
-  filter: brightness(1.2);
-}
-
-/* --- Mobile Adaptations --- */
-@media (max-width: 630px) {
-  .premium-bg {
-    padding: 2rem 1.25rem;
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
 
-  .glass-panel {
-    padding: 1.75rem;
-    border-radius: var(--radius-md);
+  to {
+    transform: rotate(360deg);
   }
+}
 
-  h1 {
-    font-size: 2rem;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
   }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
 }
 
 /* TV View Full Screen Overrides */
@@ -197,10 +49,132 @@ body.full-screen-app {
   overflow: hidden !important;
   width: 100vw !important;
   height: 100vh !important;
+  background: black !important;
 }
 
 body.full-screen-app #root {
   max-width: none !important;
   width: 100vw !important;
   height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* --- Premium Home Styling --- */
+
+.premium-bg {
+  background: radial-gradient(circle at top center, #112a14 0%, #000000 100%);
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.home-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.main-panel {
+  border-top: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.edit-btn {
+  color: #3498db;
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.delete-btn {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* --- Mobile Tweaks --- */
+@media (max-width: 600px) {
+  .glass-panel {
+    padding: 1.25rem !important;
+    border-radius: 16px;
+  }
+
+  .app-container {
+    padding: 1rem 0.5rem !important;
+  }
+
+  .home-layout {
+    gap: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* --- Admin Dashboard Responsiveness --- */
+.config-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.config-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .config-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .config-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .config-actions input {
+    flex: 1;
+    max-width: 80px;
+  }
+
+  .config-actions button {
+    flex: 2;
+  }
 }

@@ -155,10 +155,10 @@ export default function TvView() {
                 )}
                 {/* Foul Overlay */}
                 {foulOverlay && !victoryMessage && (
-                    <div className="break-overlay century-glow" style={{ borderColor: 'var(--color-accent-red)', boxShadow: '0 0 80px rgba(255, 71, 87, 0.5)' }}>
-                        <div className="break-label" style={{ color: 'var(--color-accent-red)' }}>FAUTE !</div>
-                        <div className="break-value" style={{ color: 'var(--color-accent-red)' }}>{foulOverlay.points}</div>
-                        <div className="break-badge" style={{ background: 'var(--color-accent-red)', color: 'white' }}>{foulOverlay.player}</div>
+                    <div className="break-overlay foul-overlay" style={{ border: '4px solid #ff4757', boxShadow: '0 0 50px rgba(255, 71, 87, 0.4)' }}>
+                        <div className="break-label" style={{ color: '#ff4757' }}>FAUTE !</div>
+                        <div className="break-value" style={{ color: '#ff4757' }}>{foulOverlay.points}</div>
+                        <div className="break-badge" style={{ background: '#ff4757', color: 'white' }}>{foulOverlay.player}</div>
                     </div>
                 )}
                 {/* Persistent Victory Overlay (stays 6 seconds) */}
@@ -210,7 +210,7 @@ export default function TvView() {
                 <div className="footer-right">
                     {gameState.matchStartTime && !gameState.isWaitingForMatch && (
                         <div className="footer-timer">
-                            {minutes}:{seconds}
+                            ⏱ {minutes}:{seconds}
                         </div>
                     )}
                 </div>

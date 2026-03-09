@@ -263,50 +263,39 @@ function Home() {
   const totalOwed = statEntries.reduce((sum, [, s]) => sum + s.amountOwed, 0);
 
   return (
-    <div className="premium-bg">
-      <div className="home-layout scale-in">
+    <div className="app-container premium-bg">
+      <div className="home-layout">
+        {/* Match Config */}
         <div className="glass-panel main-panel">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-            <h1 style={{ margin: 0, fontSize: '2rem' }}>Snooker Pro</h1>
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
-              <button
-                onClick={() => navigate('/tournament')}
-                className="btn-primary"
-                style={{ padding: '0.5rem 1rem', width: 'auto', fontSize: '0.9rem', borderRadius: 'var(--radius-sm)', background: 'var(--color-accent-gold)', boxShadow: '0 4px 15px var(--color-accent-gold-glow)' }}
-              >
-                🏆 Tournoi
-              </button>
-              <button onClick={() => navigate('/admin')} className="action-btn" style={{ fontSize: '1.25rem' }}>⚙️</button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <h1 style={{ margin: 0, fontSize: '2rem', textAlign: 'center', flex: 1 }}>🎱 Snooker Pro</h1>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <button onClick={() => navigate('/tournament')} style={{ background: '#f1c40f', border: 'none', color: 'black', fontWeight: 'bold', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}>🏆 Tournoi</button>
+              <button onClick={() => navigate('/admin')} style={{ background: 'transparent', border: 'none', color: 'var(--color-text-muted)', fontSize: '1.5rem', cursor: 'pointer' }}>⚙️</button>
             </div>
           </div>
 
           <div style={{ marginBottom: '2rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', justifyContent: 'center' }}>
-            {Array.from({ length: tablesCount }).map((_, i) => {
-              const isActive = selectedTable === `TABLE${i + 1}`;
-              return (
-                <button
-                  key={`table-${i}`}
-                  onClick={() => setSelectedTable(`TABLE${i + 1}`)}
-                  className={isActive ? "btn-primary" : "btn-outline"}
-                  style={{
-                    padding: '0.6rem 1.25rem',
-                    width: 'auto',
-                    fontSize: '0.9rem',
-                    borderRadius: 'var(--radius-full)',
-                    background: isActive ? 'var(--color-accent-blue)' : 'transparent',
-                    boxShadow: isActive ? '0 4px 15px rgba(52, 152, 219, 0.3)' : 'none',
-                    borderColor: isActive ? 'var(--color-accent-blue)' : 'var(--color-border)'
-                  }}
-                >
-                  Table {i + 1}
-                </button>
-              );
-            })}
+            {Array.from({ length: tablesCount }).map((_, i) => (
+              <button
+                key={`table-${i}`}
+                onClick={() => setSelectedTable(`TABLE${i + 1}`)}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  background: selectedTable === `TABLE${i + 1}` ? '#3498db' : 'rgba(255,255,255,0.1)',
+                  color: 'white',
+                  border: selectedTable === `TABLE${i + 1}` ? '2px solid #2980b9' : '1px solid rgba(255,255,255,0.2)',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  fontWeight: selectedTable === `TABLE${i + 1}` ? 'bold' : 'normal'
+                }}
+              >
+                Table {i + 1}
+              </button>
+            ))}
           </div>
 
-          <div style={{ marginBottom: '2rem', color: 'var(--color-text-muted)', textAlign: 'center', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px' }}>
-            CONFIGURER LA {selectedTable}
-          </div>
+          <p style={{ marginBottom: '2rem', color: 'var(--color-text-muted)', textAlign: 'center' }}>Configuration de la {selectedTable}</p>
 
           {isTournamentMatch ? (
             <div style={{ background: 'rgba(241, 196, 15, 0.15)', border: '1px solid rgba(241, 196, 15, 0.5)', borderRadius: '8px', padding: '1.5rem', marginBottom: '1.5rem', textAlign: 'center' }}>
@@ -318,23 +307,28 @@ function Home() {
               </div>
             </div>
           ) : (
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', alignItems: 'flex-start' }}>
               <div style={{ flex: 1 }}>
-                <label>JOUEUR 1</label>
-                <input type="text" value={player1} onChange={e => setPlayer1(e.target.value)} placeholder="Nom..." />
+                <label style={{ display: 'flex', alignItems: 'center', height: '1.5rem', marginBottom: '0.5rem', fontSize: '0.85rem', color: 'var(--color-text-muted)', textTransform: 'uppercase' }}>PLAYER 1</label>
+                <input type="text" value={player1} onChange={e => setPlayer1(e.target.value)}
+                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)', boxSizing: 'border-box' }}
+                />
               </div>
               <div style={{ flex: 1 }}>
-                <label style={{ color: tableState?.queue?.length ? 'var(--color-accent-green)' : 'var(--color-text-muted)', fontWeight: tableState?.queue?.length ? 800 : 700 }}>
-                  {tableState?.queue?.length ? '👤 SUIVANT' : 'JOUEUR 2'}
+                <label style={{ display: 'flex', alignItems: 'center', height: '1.5rem', marginBottom: '0.5rem', fontSize: '0.85rem', color: tableState?.queue?.length ? '#2ecc71' : 'var(--color-text-muted)', fontWeight: tableState?.queue?.length ? 'bold' : 'normal', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>
+                  {tableState?.queue?.length ? '👤 SUIVANT' : 'PLAYER 2'}
                 </label>
-                <input type="text" value={player2} onChange={e => setPlayer2(e.target.value)} placeholder="Nom..." />
+                <input type="text" value={player2} onChange={e => setPlayer2(e.target.value)}
+                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: tableState?.queue?.length ? '1px solid #2ecc71' : '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)', boxSizing: 'border-box' }}
+                />
               </div>
             </div>
           )}
 
-          <div style={{ marginBottom: '2.5rem' }}>
-            <label>FORMAT DU MATCH</label>
-            <select value={matchType} onChange={e => setMatchType(e.target.value)}>
+          <div style={{ marginBottom: '2rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>MATCH FORMAT</label>
+            <select value={matchType} onChange={e => setMatchType(e.target.value)}
+              style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)' }}>
               <option value="FRAME_UNIQUE">Match Normal (1 Frame)</option>
               <option value="3">Défi A2 (Best of 3)</option>
               <option value="5">Défi A3 (Best of 5)</option>
@@ -342,30 +336,32 @@ function Home() {
             </select>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <button onClick={joinAsRemote} className="btn-primary">
-              {tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver ? '📱 Continuer le Match' : '📱 Lancer la Télécommande'}
+          <div className="flex-col" style={{ gap: '1rem' }}>
+            <button onClick={joinAsRemote}
+              style={{ padding: '1rem', background: 'var(--color-accent-green)', color: 'black', fontWeight: 'bold', fontSize: '1.1rem', borderRadius: 'var(--radius-full)' }}>
+              {tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver ? '📱 Resume Active Match' : '📱 Launch Mobile Remote'}
             </button>
 
-            <button onClick={joinAsTv} className="btn-outline">
-              📺 Affichage TV
+            <button onClick={joinAsTv}
+              style={{ padding: '1rem', background: 'transparent', border: '2px solid var(--color-text-main)', color: 'white', fontWeight: 'bold', fontSize: '1.1rem', borderRadius: 'var(--radius-full)' }}>
+              📺 Launch TV Display
             </button>
           </div>
         </div>
-
         {!isTournamentMatch && (
-          <div className="glass-panel slide-up" style={{ animationDelay: '0.1s' }}>
-            <h2 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: 'var(--color-accent-blue)', textAlign: 'center' }}>👥 PROCHAIN JOUEUR</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          <div className="glass-panel" style={{ padding: '2rem' }}>
+            <h2 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#3498db', textAlign: 'center' }}>👤 AJOUTER LE JOUEUR SUIVANT</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div>
-                <label>NOM DU JOUEUR</label>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>NOM DU JOUEUR</label>
                 <input
+                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)' }}
                   value={nextPlayerName}
                   onChange={e => setNextPlayerName(e.target.value)}
-                  placeholder="Ex: Ahmed..."
+                  placeholder="Ex: Ahmed"
                 />
               </div>
-              <button className="btn-primary" style={{ background: 'var(--color-accent-blue)', boxShadow: '0 4px 15px rgba(52, 152, 219, 0.3)' }} onClick={addNextPlayerContext}>
+              <button className="btn-launch" style={{ padding: '1rem', borderRadius: 'var(--radius-full)', fontWeight: 'bold', background: '#3498db', color: 'white', border: 'none', cursor: 'pointer' }} onClick={addNextPlayerContext}>
                 ➕ Ajouter à la File
               </button>
             </div>
@@ -428,12 +424,12 @@ function Home() {
           </div>
         )}
 
-        <div className="glass-panel slide-up" style={{ animationDelay: '0.2s' }}>
+        <div className="glass-panel stats-panel">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <h2 style={{ fontSize: '1.25rem', margin: 0 }}>📊 Statistiques <span style={{ fontSize: '0.75rem', opacity: 0.5 }}>({statEntries.length})</span></h2>
+            <h2 style={{ fontSize: '1.5rem', margin: 0 }}>📊 Statistiques <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>({statEntries.length} joueurs)</span></h2>
             <button onClick={() => { setShowStats(!showStats); if (!showStats) fetchStats(); }}
-              className="btn-outline" style={{ width: 'auto', padding: '0.5rem 1rem', fontSize: '0.8rem', borderRadius: 'var(--radius-sm)' }}>
-              {showStats ? 'Masquer' : 'Voir'}
+              style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', padding: '0.5rem 1rem', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem' }}>
+              {showStats ? 'Masquer' : 'Afficher'}
             </button>
           </div>
 

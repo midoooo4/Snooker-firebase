@@ -70,6 +70,13 @@ export default function TvView() {
         }
     }, [gameState?.lastFoul?.timestamp]);
 
+    // Clear foul overlay if scoring starts
+    useEffect(() => {
+        if (gameState?.currentBreak && gameState.currentBreak > 0) {
+            setFoulOverlay(null);
+        }
+    }, [gameState?.currentBreak]);
+
     const elapsed = gameState?.matchStartTime && !gameState.isWaitingForMatch ? currentTime - gameState.matchStartTime : 0;
 
     if (!connected || !gameState) {
@@ -180,7 +187,7 @@ export default function TvView() {
                     </div>
                 )}
                 {/* Foul Overlay */}
-                {foulOverlay && !victoryMessage && (
+                {foulOverlay && !victoryMessage && (!gameState.currentBreak || gameState.currentBreak === 0) && (
                     <div className="break-overlay foul-overlay" style={{ border: '4px solid #ff4757', boxShadow: '0 0 50px rgba(255, 71, 87, 0.4)' }}>
                         <div className="break-label" style={{ color: '#ff4757' }}>FAUTE !</div>
                         <div className="break-value" style={{ color: '#ff4757' }}>{foulOverlay.points}</div>

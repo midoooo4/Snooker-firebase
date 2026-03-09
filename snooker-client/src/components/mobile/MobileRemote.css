@@ -288,6 +288,10 @@
     background: #0f381c;
     border-color: #2ecc7150;
     color: #2ecc71;
+    grid-column: span 2;
+    /* Make it full width */
+    margin-top: 0.5rem;
+    /* Add some separation */
 }
 
 

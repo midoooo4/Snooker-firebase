@@ -98,27 +98,44 @@ export default function MobileRemote() {
 
             <div className="stats-row">
                 <div className="stat-item">
-                    <span className="stat-title">BREAK EN COURS</span>
-                    <span className="stat-num text-green">{gameState.currentBreak}</span>
+                    <span className="stat-title">BREAK</span>
+                    <span className="stat-num" style={{ color: 'var(--color-accent-green)' }}>{gameState.currentBreak}</span>
                 </div>
                 <div className="stat-item">
-                    <span className="stat-title">MEILLEUR BREAK</span>
-                    <span className="stat-num text-gold">{Math.max((gameState.bestBreaks && gameState.bestBreaks[0]) || 0, (gameState.bestBreaks && gameState.bestBreaks[1]) || 0)}</span>
+                    <span className="stat-title">RECORD</span>
+                    <span className="stat-num" style={{ color: 'var(--color-accent-gold)' }}>{Math.max((gameState.bestBreaks?.[0] || 0), (gameState.bestBreaks?.[1] || 0))}</span>
                 </div>
                 <div className="stat-item">
                     <span className="stat-title">ROUGES</span>
-                    <span className="stat-num text-red">{gameState.remainingReds}</span>
+                    <span className="stat-num" style={{ color: 'var(--color-accent-red)' }}>{gameState.remainingReds}</span>
                 </div>
                 <div className="stat-item">
                     <span className="stat-title">FRAME</span>
-                    <span className="stat-num text-white">{Math.max((gameState.framesWon && gameState.framesWon[0]) || 0, (gameState.framesWon && gameState.framesWon[1]) || 0) + 1}</span>
+                    <span className="stat-num">{Math.max((gameState.framesWon?.[0] || 0), (gameState.framesWon?.[1] || 0)) + 1}</span>
                 </div>
             </div>
 
-            <div className="target-pill-container">
-                <div className="target-pill">
-                    <span className="target-dot" style={{ background: gameState.remainingReds > 0 ? '#e74c3c' : '#f1c40f' }}></span>
-                    {gameState.remainingReds > 0 ? 'Jouer une rouge' : 'Jouer la couleur'}
+            <div className="target-pill-container" style={{ margin: '1.5rem 0' }}>
+                <div className="target-pill" style={{
+                    background: 'rgba(0,0,0,0.3)',
+                    border: '1px solid var(--color-border)',
+                    color: gameState.remainingReds > 0 ? 'var(--color-accent-red)' : 'var(--color-accent-gold)',
+                    padding: '0.5rem 1.5rem',
+                    borderRadius: 'var(--radius-full)',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                }}>
+                    <span style={{
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '50%',
+                        background: gameState.remainingReds > 0 ? 'var(--color-accent-red)' : 'var(--color-accent-gold)',
+                        boxShadow: `0 0 10px ${gameState.remainingReds > 0 ? 'var(--color-accent-red)' : 'var(--color-accent-gold)}'}`
+                    }}></span>
+                    {gameState.remainingReds > 0 ? 'JOUER UNE ROUGE' : 'JOUER LA COULEUR'}
                 </div>
             </div>
 

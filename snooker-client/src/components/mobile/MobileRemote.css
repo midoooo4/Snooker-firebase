@@ -1,14 +1,15 @@
 .mobile-app.dark-theme {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
     /* Smart Viewport Height for mobile */
     background-color: #0d1218;
     color: #f1f2f6;
     font-family: var(--font-family);
-    overflow: hidden;
-    /* Prevent body scroll */
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Allow vertical scroll if content overflows */
 }
 
 /* Header */

@@ -54,13 +54,28 @@ export default function MobileRemote() {
     };
 
     const toggleFullscreen = () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-            });
+        const doc = document.documentElement as any;
+        const _document = document as any;
+
+        if (!document.fullscreenElement && !_document.webkitFullscreenElement && !_document.mozFullScreenElement && !_document.msFullscreenElement) {
+            if (doc.requestFullscreen) {
+                doc.requestFullscreen();
+            } else if (doc.webkitRequestFullscreen) {
+                doc.webkitRequestFullscreen();
+            } else if (doc.mozRequestFullScreen) {
+                doc.mozRequestFullScreen();
+            } else if (doc.msRequestFullscreen) {
+                doc.msRequestFullscreen();
+            }
         } else {
             if (document.exitFullscreen) {
                 document.exitFullscreen();
+            } else if (_document.webkitExitFullscreen) {
+                _document.webkitExitFullscreen();
+            } else if (_document.mozCancelFullScreen) {
+                _document.mozCancelFullScreen();
+            } else if (_document.msExitFullscreen) {
+                _document.msExitFullscreen();
             }
         }
     };

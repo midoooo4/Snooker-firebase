@@ -116,7 +116,7 @@ export default function TvView() {
 
                         {/* Potted Balls Tracker */}
                         <div className="potted-balls-container">
-                            {gameState.pottedBalls && gameState.pottedBalls[0] && gameState.pottedBalls[0].slice(-8).map((ball: string, idx: number) => (
+                            {gameState.pottedBalls && gameState.pottedBalls[0] && gameState.pottedBalls[0].map((ball: string, idx: number) => (
                                 <div key={idx} className={`mini-ball ball-${ball.toLowerCase()}`}></div>
                             ))}
                         </div>
@@ -155,7 +155,7 @@ export default function TvView() {
 
                         {/* Potted Balls Tracker */}
                         <div className="potted-balls-container">
-                            {gameState.pottedBalls && gameState.pottedBalls[1] && gameState.pottedBalls[1].slice(-8).map((ball: string, idx: number) => (
+                            {gameState.pottedBalls && gameState.pottedBalls[1] && gameState.pottedBalls[1].map((ball: string, idx: number) => (
                                 <div key={idx} className={`mini-ball ball-${ball.toLowerCase()}`}></div>
                             ))}
                         </div>

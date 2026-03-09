@@ -307,19 +307,19 @@ function Home() {
               </div>
             </div>
           ) : (
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.5rem', alignItems: 'flex-start' }}>
               <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>PLAYER 1</label>
+                <label style={{ display: 'flex', alignItems: 'center', height: '1.5rem', marginBottom: '0.5rem', fontSize: '0.85rem', color: 'var(--color-text-muted)', textTransform: 'uppercase' }}>PLAYER 1</label>
                 <input type="text" value={player1} onChange={e => setPlayer1(e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)', boxSizing: 'border-box' }}
                 />
               </div>
               <div style={{ flex: 1 }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', color: tableState?.queue?.length ? '#2ecc71' : 'var(--color-text-muted)', fontWeight: tableState?.queue?.length ? 'bold' : 'normal', whiteSpace: 'nowrap' }}>
+                <label style={{ display: 'flex', alignItems: 'center', height: '1.5rem', marginBottom: '0.5rem', fontSize: '0.85rem', color: tableState?.queue?.length ? '#2ecc71' : 'var(--color-text-muted)', fontWeight: tableState?.queue?.length ? 'bold' : 'normal', whiteSpace: 'nowrap', textTransform: 'uppercase' }}>
                   {tableState?.queue?.length ? '👤 SUIVANT' : 'PLAYER 2'}
                 </label>
                 <input type="text" value={player2} onChange={e => setPlayer2(e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: tableState?.queue?.length ? '1px solid #2ecc71' : '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'rgba(0,0,0,0.3)', border: tableState?.queue?.length ? '1px solid #2ecc71' : '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 'var(--radius-sm)', boxSizing: 'border-box' }}
                 />
               </div>
             </div>

@@ -11,6 +11,23 @@ import MobileRemote from './components/mobile/MobileRemote';
 import AdminDashboard from './components/admin/AdminDashboard';
 import TournamentBracket from './components/tournament/TournamentBracket';
 
+// --- StrictModeDroppable for React 18 ---
+
+const StrictModeDroppable = ({ children, ...props }: any) => {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    const animation = requestAnimationFrame(() => setEnabled(true));
+    return () => {
+      cancelAnimationFrame(animation);
+      setEnabled(false);
+    };
+  }, []);
+  if (!enabled) {
+    return null;
+  }
+  return <Droppable {...props}>{children}</Droppable>;
+};
+
 interface PlayerStat {
   wins: number;
   losses: number;
@@ -30,6 +47,7 @@ function Home() {
   const [selectedTable, setSelectedTable] = useState('TABLE1');
   const [tournament, setTournament] = useState<any>(null);
   const [isTournamentMatch, setIsTournamentMatch] = useState(false);
+  const [localQueue, setLocalQueue] = useState<string[]>([]); // Optimistic UI
 
   const { gameState: tableState } = useSocket(selectedTable);
 
@@ -131,7 +149,12 @@ function Home() {
         setPlayer2(tableState.players[1] || '');
       }
     }
-  }, [tableState?.players, selectedTable, tournament]);
+
+    // Sync local queue when tableState changes (if not dragging)
+    if (tableState?.queue) {
+      setLocalQueue(tableState.queue);
+    }
+  }, [tableState?.players, tableState?.queue, selectedTable, tournament]);
 
   const joinAsRemote = () => {
     const isSameMatch = tableState?.players?.[0] === player1 && tableState?.players?.[1] === player2;
@@ -213,15 +236,26 @@ function Home() {
 
     if (startIndex === endIndex) return;
 
+    // --- Optimistic Update ---
+    const reordered = Array.from(localQueue);
+    const [removed] = reordered.splice(startIndex, 1);
+    reordered.splice(endIndex, 0, removed);
+    setLocalQueue(reordered);
+
     try {
       const res = await fetch(`${API_URL}/api/queue/reorder`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ roomCode: selectedTable, startIndex, endIndex })
       });
-      if (!res.ok) alert('Erreur lors de la réorganisation.');
+      if (!res.ok) {
+        // Rollback on error
+        setLocalQueue(tableState?.queue || []);
+        alert('Erreur lors de la réorganisation.');
+      }
     } catch (e) {
       console.error('Failed to reorder queue', e);
+      setLocalQueue(tableState?.queue || []);
     }
   };
 
@@ -337,14 +371,14 @@ function Home() {
                 <h3 style={{ fontSize: '1rem', marginBottom: '1.5rem', color: 'var(--color-text-muted)', textAlign: 'center', letterSpacing: '1px' }}>FILE D'ATTENTE ({(tableState.queue as string[]).length})</h3>
 
                 <DragDropContext onDragEnd={onDragEnd}>
-                  <Droppable droppableId="queue-list">
-                    {(provided) => (
+                  <StrictModeDroppable droppableId="queue-list">
+                    {(provided: any) => (
                       <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
                       >
-                        {(tableState.queue as string[]).map((name: string, idx: number) => (
+                        {localQueue.map((name: string, idx: number) => (
                           <Draggable key={`${name}-${idx}`} draggableId={`${name}-${idx}`} index={idx}>
                             {(provided, snapshot) => (
                               <div
@@ -354,18 +388,18 @@ function Home() {
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'space-between',
-                                  background: snapshot.isDragging ? 'rgba(46, 204, 113, 0.2)' : 'rgba(255,255,255,0.05)',
-                                  border: snapshot.isDragging ? '1px solid #2ecc71' : '1px solid rgba(255,255,255,0.1)',
+                                  background: snapshot.isDragging ? 'rgba(52, 152, 219, 0.2)' : 'rgba(255,255,255,0.05)',
+                                  border: snapshot.isDragging ? '1px solid #3498db' : '1px solid rgba(255,255,255,0.1)',
                                   padding: '0.75rem 1rem',
                                   borderRadius: 'var(--radius-sm)',
-                                  boxShadow: snapshot.isDragging ? '0 10px 20px rgba(0,0,0,0.3)' : 'none',
+                                  boxShadow: snapshot.isDragging ? '0 10px 30px rgba(0,0,0,0.5)' : 'none',
                                   ...provided.draggableProps.style
                                 }}
                               >
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                   <span
                                     {...provided.dragHandleProps}
-                                    style={{ cursor: 'grab', color: 'rgba(255,255,255,0.3)', marginRight: '0.5rem' }}
+                                    style={{ cursor: 'grab', color: 'rgba(255,255,255,0.3)', padding: '0.5rem 0.25rem' }}
                                   >
                                     ☰
                                   </span>
@@ -383,7 +417,7 @@ function Home() {
                         {provided.placeholder}
                       </div>
                     )}
-                  </Droppable>
+                  </StrictModeDroppable>
                 </DragDropContext>
               </div>
             )}

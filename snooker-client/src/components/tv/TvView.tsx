@@ -109,7 +109,7 @@ export default function TvView() {
                                 Frames: {gameState.framesWon[0]}
                             </div>
                         )}
-                        <div className="player-best-break">Highest: {gameState.bestBreaks[0]}</div>
+                        <div className="player-best-break">Highest break: {gameState.bestBreaks[0]}</div>
                     </div>
 
                     <div className="vs-divider flex-col">
@@ -142,7 +142,7 @@ export default function TvView() {
                                 Frames: {gameState.framesWon[1]}
                             </div>
                         )}
-                        <div className="player-best-break">Highest: {gameState.bestBreaks[1]}</div>
+                        <div className="player-best-break">Highest break: {gameState.bestBreaks[1]}</div>
                     </div>
                 </div>
 

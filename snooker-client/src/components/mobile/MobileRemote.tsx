@@ -82,13 +82,21 @@ export default function MobileRemote() {
             </header>
 
             <div className="score-board">
-                <div className={`player-score-box ${gameState.activePlayer === 0 ? 'active' : ''}`}>
+                <div
+                    className={`player-score-box ${gameState.activePlayer === 0 ? 'active' : ''}`}
+                    onClick={() => gameState.activePlayer !== 0 && handleAction('MISS')}
+                    style={{ cursor: gameState.activePlayer !== 0 ? 'pointer' : 'default' }}
+                >
                     <div className="player-label">
                         {gameState.activePlayer === 0 && <span className="play-icon">▶</span>} {gameState.players[0] || 'A'}
                     </div>
                     <div className="score-value">{gameState.scores[0]}</div>
                 </div>
-                <div className={`player-score-box ${gameState.activePlayer === 1 ? 'active' : ''}`}>
+                <div
+                    className={`player-score-box ${gameState.activePlayer === 1 ? 'active' : ''}`}
+                    onClick={() => gameState.activePlayer !== 1 && handleAction('MISS')}
+                    style={{ cursor: gameState.activePlayer !== 1 ? 'pointer' : 'default' }}
+                >
                     <div className="player-label">
                         {gameState.activePlayer === 1 && <span className="play-icon">▶</span>} {gameState.players[1] || 'B'}
                     </div>

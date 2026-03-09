@@ -369,27 +369,3 @@
     border: 1px solid #747d8c;
     border-radius: var(--radius-sm);
 }
-
-.btn-freeball {
-    background: linear-gradient(135deg, #7f8c8d 0%, #34495e 100%) !important;
-}
-
-.btn-freeball.active {
-    background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%) !important;
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.4);
-    animation: pulse-free 2s infinite;
-}
-
-@keyframes pulse-free {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}

@@ -176,9 +176,6 @@ export default function MobileRemote() {
                 <button className="btn-action btn-foul" onClick={() => setShowFoulModal(true)}>
                     <span className="icon">⚠</span> Faute
                 </button>
-                <button className={`btn-action btn-freeball ${gameState.isFreeballAvailable ? 'active' : ''}`} onClick={() => handleAction('TOGGLE_FREE_BALL')}>
-                    <span className="icon">⚪</span> Free Ball
-                </button>
                 <button className="btn-action btn-undo" onClick={() => handleAction('UNDO')}>
                     <span className="icon">↩</span> Annuler
                 </button>

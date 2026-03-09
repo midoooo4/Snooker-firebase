@@ -148,9 +148,6 @@ export default function MobileRemote() {
             </div>
 
             <div className="bottom-actions-grid">
-                <button className="btn-action btn-miss" onClick={() => handleAction('MISS')}>
-                    <span className="icon">X</span> Raté
-                </button>
                 <button className="btn-action btn-foul" onClick={() => setShowFoulModal(true)}>
                     <span className="icon">⚠</span> Faute
                 </button>

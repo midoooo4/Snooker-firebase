@@ -67,8 +67,6 @@ export default function TvView() {
                 setFoulOverlay(null);
                 foulTimerRef.current = null;
             }, 7000); // 7 seconds
-        } else {
-            setFoulOverlay(null);
         }
     }, [gameState?.lastFoul?.timestamp]);
 

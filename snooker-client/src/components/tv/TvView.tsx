@@ -91,7 +91,9 @@ export default function TvView() {
     // Calculate points remaining on table
     const calculateRemaining = () => {
         if (gameState.phase === 'REDS') {
-            return (gameState.remainingReds * 8) + 27;
+            let total = (gameState.remainingReds * 8) + 27;
+            if (gameState.isColorTurn) total += 7;
+            return total;
         } else {
             const colors = [2, 3, 4, 5, 6, 7];
             let total = 0;

@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+snooker-client/node_modules
+snooker-server/node_modules
+
+# Build artifacts
+snooker-client/dist
+snooker-server/data
+
+# Version Control & IDEs
+.git
+.github
+.vscode
+.idea
+.firebase
+
+# Sensitive & Env
+.env
+.env.*
+service-account.json
+credentials.json
+snooker-live-*.json
+
+# Logs & Temp
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+/tmp
+
+

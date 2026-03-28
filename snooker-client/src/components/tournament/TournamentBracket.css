@@ -1,0 +1,123 @@
+.tournament-container {
+    min-height: 100vh;
+    padding: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow-x: auto;
+}
+
+.tournament-empty {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.btn-back-absolute {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+.tournament-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(52, 152, 219, 0.8);
+    text-align: center;
+}
+
+.champion-title {
+    color: #f1c40f;
+    font-size: 2rem;
+    text-shadow: 0 0 15px rgba(241, 196, 15, 0.7);
+    margin-bottom: 2rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.bracket-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3rem;
+    padding-bottom: 4rem;
+}
+
+.round-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.match-card {
+    background: rgba(0, 20, 40, 0.6);
+    border: 2px solid rgba(52, 152, 219, 0.5);
+    border-radius: 8px;
+    width: 220px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    position: relative;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.match-card.active {
+    border-color: #f1c40f;
+    box-shadow: 0 0 25px rgba(241, 196, 15, 0.4);
+    transform: scale(1.05);
+}
+
+.player-slot {
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.player-slot:last-child {
+    border-bottom: none;
+}
+
+.player-slot.winner {
+    color: #2ecc71;
+    font-weight: bold;
+    background: linear-gradient(90deg, transparent, rgba(46, 204, 113, 0.2), transparent);
+}
+
+.player-slot.tbd {
+    color: rgba(255,255,255,0.3);
+    font-style: italic;
+}
+
+.match-table {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    background: #e74c3c;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}

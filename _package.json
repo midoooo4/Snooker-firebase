@@ -1,0 +1,13 @@
+{
+  "name": "snooker-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "install-all": "npm install --prefix snooker-client && npm install --prefix snooker-server",
+    "build": "npm run build --prefix snooker-client",
+    "start": "node snooker-server/server.js"
+  }
+}

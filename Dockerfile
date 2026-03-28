@@ -1,14 +1,15 @@
 FROM node:20-bookworm-slim
 
-WORKDIR /home/node/app
+# Set standard /app directory
+WORKDIR /app
 
-# Set environment
+# Set build-time environment
 ENV NODE_ENV=production
 ENV CI=true
 ENV PORT=7860
 ENV NODE_OPTIONS="--max-old-space-size=2048"
 
-# Copy package files
+# Copy package files (leverages Docker caching)
 COPY snooker-client/package*.json ./snooker-client/
 COPY snooker-server/package*.json ./snooker-server/
 
@@ -16,23 +17,24 @@ COPY snooker-server/package*.json ./snooker-server/
 RUN cd snooker-client && npm ci --verbose
 RUN cd snooker-server && npm ci --verbose
 
-# Copy source
+# Copy the rest of the application
 COPY . .
 
-# Build Client
+# Build the client
 RUN cd snooker-client && npm run build --verbose
 
-# Setup data folder
-RUN mkdir -p snooker-server/data && chown -R node:node /home/node/app
+# Create data folder and fix permissions in one go
+RUN mkdir -p snooker-server/data && chown -R node:node /app
 
-# Switch to non-root user
+# Switch to official non-root user
 USER node
 
-# Expose port
+# Expose build port
 EXPOSE 7860
 
-# Run server
+# Start server
 CMD ["node", "snooker-server/server.js"]
+
 
 
 

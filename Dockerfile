@@ -23,6 +23,8 @@ RUN cd snooker-client && npm run build --verbose
 # Set production environment for runtime
 ENV NODE_ENV=production
 ENV PORT=7860
+# Cache bust: force rebuild on every deploy
+ENV BUILD_TIMESTAMP=2026-03-29-v3
 
 # Create data folder and fix permissions
 RUN mkdir -p snooker-server/data && chown -R node:node /app

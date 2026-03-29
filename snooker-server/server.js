@@ -26,6 +26,10 @@ console.log('Port:', PORT);
 console.log('Directory:', __dirname);
 
 app.use(express.json());
+// Serve static frontend build
+app.use(express.static(path.join(__dirname, '../snooker-client/dist')));
+app.use('/assets', express.static(path.join(__dirname, '../snooker-client/dist/assets')));
+app.use('/backgrounds', express.static(path.join(__dirname, '../snooker-client/public/backgrounds')));
 
 app.get('/api/version', (req, res) => {
     console.log('[API] /api/version called');

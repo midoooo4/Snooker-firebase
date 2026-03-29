@@ -182,7 +182,7 @@ export default function MobileRemote() {
             </div>
 
             {/* Special Reset Options (Clinch Situation: equal or close scores, Black remaining) */}
-            {gameState!.remainingReds === 0 && gameState!.currentColorIndex === 5 && Math.abs(gameState!.scores[0] - gameState!.scores[1]) <= 7 && (
+            {gameState!.remainingReds === 0 && gameState!.currentColorIndex >= 5 && Math.abs(gameState!.scores[0] - gameState!.scores[1]) <= 7 && (
                 <div className="special-actions-container">
                     <div className="special-actions-title">OPTIONS DE RÈGLE (ÉGALITÉ)</div>
                     <div className="special-actions-grid">

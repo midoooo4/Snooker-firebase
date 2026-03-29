@@ -1,0 +1,1201 @@
+{
+  "TABLE1": {
+    "gameState": {
+      "players": [
+        "simo",
+        "lahcen"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        59,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 3,
+      "phase": "REDS",
+      "isColorTurn": true,
+      "currentColorIndex": 0,
+      "currentBreak": 1,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        57,
+        0
+      ],
+      "pottedBalls": {
+        "0": [
+          "RED",
+          "YELLOW",
+          "RED",
+          "BROWN",
+          "RED",
+          "BLACK",
+          "RED",
+          "BLACK",
+          "RED",
+          "BLUE",
+          "RED",
+          "PINK",
+          "RED",
+          "BLUE",
+          "RED",
+          "PINK",
+          "RED",
+          "YELLOW",
+          "RED",
+          "GREEN",
+          "RED",
+          "RED"
+        ],
+        "1": []
+      },
+      "lastFrameWinner": null,
+      "lastFoul": null,
+      "isWaitingForMatch": false,
+      "isA2Mode": false,
+      "matchStartTime": 1774753002138,
+      "queue": [],
+      "history": [
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            24,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 11,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 24,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            24,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            25,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 10,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 25,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            24,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            30,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 10,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 30,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            30,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            31,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 9,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 31,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            30,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            37,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 9,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 37,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            37,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            38,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 8,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 38,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            37,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            43,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 8,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 43,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            43,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            44,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 7,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 44,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            43,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            50,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 7,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 50,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            50,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            51,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 6,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 51,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            50,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            53,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 6,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 53,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            53,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "YELLOW"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            54,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 5,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 54,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            53,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "YELLOW",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            57,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 5,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 57,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            57,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "YELLOW",
+              "RED",
+              "GREEN"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            58,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 4,
+          "phase": "REDS",
+          "isColorTurn": true,
+          "currentColorIndex": 0,
+          "currentBreak": 58,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            57,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "YELLOW",
+              "RED",
+              "GREEN",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            58,
+            0
+          ],
+          "activePlayer": 1,
+          "remainingReds": 4,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 0,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            57,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "YELLOW",
+              "RED",
+              "GREEN",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        },
+        {
+          "players": [
+            "simo",
+            "lahcen"
+          ],
+          "matchType": "FRAME_UNIQUE",
+          "framesWon": [
+            0,
+            0
+          ],
+          "scores": [
+            58,
+            0
+          ],
+          "activePlayer": 0,
+          "remainingReds": 4,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 0,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            57,
+            0
+          ],
+          "pottedBalls": {
+            "0": [
+              "RED",
+              "YELLOW",
+              "RED",
+              "BROWN",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLACK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "BLUE",
+              "RED",
+              "PINK",
+              "RED",
+              "YELLOW",
+              "RED",
+              "GREEN",
+              "RED"
+            ],
+            "1": []
+          },
+          "lastFrameWinner": null,
+          "lastFoul": null,
+          "isWaitingForMatch": false,
+          "isA2Mode": false,
+          "matchStartTime": 1774753002138,
+          "queue": []
+        }
+      ]
+    }
+  },
+  "TABLE2": {
+    "gameState": {
+      "players": [
+        "said",
+        "mbark"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        0,
+        0
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": null,
+      "isWaitingForMatch": true,
+      "matchStartTime": null,
+      "history": [],
+      "queue": []
+    }
+  },
+  "TABLE3": {
+    "gameState": {
+      "players": [
+        "simo",
+        "mohamed"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        0,
+        0
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": null,
+      "isWaitingForMatch": true,
+      "matchStartTime": null,
+      "history": [],
+      "queue": []
+    }
+  },
+  "TABLE4": {
+    "gameState": {
+      "players": [
+        "laga",
+        "younes"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        0,
+        0
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": null,
+      "isWaitingForMatch": true,
+      "matchStartTime": null,
+      "history": [],
+      "queue": []
+    }
+  },
+  "TABLE5": {
+    "gameState": {
+      "players": [
+        "reda",
+        "lahcen"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        0,
+        0
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": null,
+      "isWaitingForMatch": true,
+      "matchStartTime": null,
+      "history": [],
+      "queue": []
+    }
+  },
+  "TABLE6": {
+    "gameState": {
+      "players": [
+        "fahd",
+        "test"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        0,
+        0
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": null,
+      "isWaitingForMatch": true,
+      "matchStartTime": null,
+      "history": [],
+      "queue": []
+    }
+  },
+  "TABLE7": {
+    "gameState": {
+      "players": [
+        "tarik",
+        "amine"
+      ],
+      "matchType": "FRAME_UNIQUE",
+      "framesWon": [
+        0,
+        0
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 0,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        0,
+        0
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": null,
+      "isWaitingForMatch": true,
+      "matchStartTime": null,
+      "history": [],
+      "queue": []
+    }
+  },
+  "TABLE8": {
+    "gameState": {
+      "players": [
+        "Player 1",
+        "Player 2"
+      ],
+      "matchType": "3",
+      "framesWon": [
+        2,
+        1
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "activePlayer": 1,
+      "remainingReds": 15,
+      "phase": "REDS",
+      "isColorTurn": false,
+      "currentColorIndex": 0,
+      "currentBreak": 0,
+      "isFreeballAvailable": false,
+      "bestBreaks": [
+        8,
+        8
+      ],
+      "pottedBalls": [
+        [],
+        []
+      ],
+      "lastFrameWinner": "Player 1",
+      "isWaitingForMatch": true,
+      "matchStartTime": 1772924939468,
+      "queue": [],
+      "isMatchOver": true,
+      "history": [
+        {
+          "players": [
+            "Player 1",
+            "Player 2"
+          ],
+          "matchType": "3",
+          "framesWon": [
+            2,
+            1
+          ],
+          "scores": [
+            0,
+            0
+          ],
+          "activePlayer": 1,
+          "remainingReds": 15,
+          "phase": "REDS",
+          "isColorTurn": false,
+          "currentColorIndex": 0,
+          "currentBreak": 0,
+          "isFreeballAvailable": false,
+          "bestBreaks": [
+            8,
+            8
+          ],
+          "pottedBalls": [
+            [],
+            []
+          ],
+          "lastFrameWinner": "Player 1",
+          "isWaitingForMatch": true,
+          "matchStartTime": 1772924939468,
+          "queue": [],
+          "isMatchOver": true,
+          "matchWinner": "Player 1",
+          "history": []
+        }
+      ],
+      "matchWinner": "Player 1"
+    }
+  }
+}

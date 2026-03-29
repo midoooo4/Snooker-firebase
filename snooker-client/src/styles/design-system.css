@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+/* --- THEME SYSTEM (NUCLEAR FIX) --- */
+:root {
+  /* Default: Emerald (Vibrant Neon Green) */
+  --theme-primary: #00ff88;
+  --theme-secondary: #f1c40f;
+  --theme-bg-gradient: linear-gradient(-45deg, #0d1218, #091a13, #153b26, #0e141a);
+  --theme-card-bg: rgba(255, 255, 255, 0.05);
+  --theme-active-glow: rgba(0, 255, 136, 0.4);
+}
+
+body[data-theme='ocean'] {
+  --theme-primary: #00d2ff;
+  --theme-secondary: #00ff88;
+  --theme-bg-gradient: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #122129);
+  --theme-card-bg: rgba(0, 210, 255, 0.08);
+  --theme-active-glow: rgba(0, 210, 255, 0.5);
+}
+
+body[data-theme='gold'] {
+  --theme-primary: #f1c40f; /* Pure Gold */
+  --theme-secondary: #ffffff; /* White/Silver for highlights */
+  --theme-bg-gradient: linear-gradient(-45deg, #000000, #1a1a1a, #0a0a0a, #000000);
+  --theme-card-bg: rgba(241, 196, 15, 0.05);
+  --theme-active-glow: rgba(241, 196, 15, 0.4);
+}
+
+body[data-theme='midnight'] {
+  --theme-primary: #9c88ff;
+  --theme-secondary: #fbc531;
+  --theme-bg-gradient: linear-gradient(-45deg, #111111, #1e272e, #2f3640, #14171a);
+  --theme-card-bg: rgba(255, 255, 255, 0.03);
+  --theme-active-glow: rgba(156, 136, 255, 0.5);
+}
+
+/* --- SPECIAL BACKGROUND THEMES --- */
+body[data-theme='triangle'] {
+  --theme-primary: #00d2ff;
+  --theme-secondary: #ff0080;
+  --theme-bg-gradient: url('/backgrounds/triangle.jpg') no-repeat center center fixed;
+  --theme-card-bg: rgba(0, 0, 0, 0.6);
+  --theme-active-glow: rgba(0, 210, 255, 0.5);
+}
+
+body[data-theme='waves'] {
+  --theme-primary: #00d2ff;
+  --theme-secondary: #0080ff;
+  --theme-bg-gradient: url('/backgrounds/waves.jpg') no-repeat center center fixed;
+  --theme-card-bg: rgba(0, 0, 0, 0.6);
+  --theme-active-glow: rgba(0, 128, 255, 0.4);
+}
+
+body[data-theme='grid'] {
+  --theme-primary: #ff2d55;
+  --theme-secondary: #00b894;
+  --theme-bg-gradient: url('/backgrounds/grid.jpg') no-repeat center center fixed;
+  --theme-card-bg: rgba(0, 0, 0, 0.7);
+  --theme-active-glow: rgba(255, 45, 85, 0.4);
+}
+
+body[data-theme='carbon'] {
+  --theme-primary: #ff6b21;
+  --theme-secondary: #333333;
+  --theme-bg-gradient: url('/backgrounds/carbon.jpg') no-repeat center center fixed;
+  --theme-card-bg: rgba(0, 0, 0, 0.7);
+  --theme-active-glow: rgba(255, 107, 33, 0.4);
+}
+
+body[data-theme='city'] {
+  --theme-primary: #00d2ff;
+  --theme-secondary: #ff7675;
+  --theme-bg-gradient: url('/backgrounds/city.jpg') no-repeat center center fixed;
+  --theme-card-bg: rgba(0, 0, 0, 0.6);
+  --theme-active-glow: rgba(0, 210, 255, 0.4);
+}
+
+body[data-theme='abstract'] {
+  --theme-primary: #4a69bd;
+  --theme-secondary: #1e3799;
+  --theme-bg-gradient: url('/backgrounds/abstract.jpg') no-repeat center center fixed;
+  --theme-card-bg: rgba(0, 0, 0, 0.65);
+  --theme-active-glow: rgba(74, 105, 189, 0.4);
+}
+
+body[data-theme='triangle'],
+body[data-theme='waves'],
+body[data-theme='grid'],
+body[data-theme='carbon'],
+body[data-theme='city'],
+body[data-theme='abstract'],
+[data-theme='triangle'] .tv-app,
+[data-theme='waves'] .tv-app,
+[data-theme='grid'] .tv-app,
+[data-theme='carbon'] .tv-app,
+[data-theme='city'] .tv-app,
+[data-theme='abstract'] .tv-app,
+[data-theme='triangle'] .premium-bg,
+[data-theme='waves'] .premium-bg,
+[data-theme='grid'] .premium-bg,
+[data-theme='carbon'] .premium-bg,
+[data-theme='city'] .premium-bg,
+[data-theme='abstract'] .premium-bg {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  animation: none !important; /* Disable gradient sliding animation for image themes */
+}
+
+:root {
+  /* Snooker Premium Color Palette */
+  --color-bg-base: #0a0e0a;
+  --color-bg-surface: #121812;
+  --color-bg-card: rgba(25, 33, 25, 0.8);
+  
+  --color-text-main: #f0f4f0;
+  --color-text-muted: #8b9a8b;
+  
+  --color-accent-green: #2ecc71;
+  --color-accent-gold: #f1c40f;
+  
+  /* Snooker Ball Colors */
+  --ball-red: #e74c3c;
+  --ball-yellow: #f1c40f;
+  --ball-green: #2ecc71;
+  --ball-brown: #c0392b; /* using a brownish red/copper */
+  --ball-blue: #3498db;
+  --ball-pink: #fd79a8;
+  --ball-black: #111111;
+  --ball-white: #ffffff;
+  
+  /* Layout */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  /* Typography */
+  --font-family: 'Outfit', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--theme-bg-gradient);
+  background-color: var(--color-bg-base);
+  color: var(--color-text-main);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Micro-animations */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(46, 204, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Base App Layout */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+}
+
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  outline: none;
+}

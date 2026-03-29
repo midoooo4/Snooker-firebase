@@ -122,9 +122,8 @@ function handleAction(prevState, action, payload) {
                     state.currentColorIndex = 0;
                 }
             } else {
-                // Already in colors phase, we advance the sequence
-                // However, if it's a FREEBALL, we DO NOT advance the sequence (the actual nominated ball was sunk, but the sequence color remains on table)
-                if (!payload?.isFreeball) {
+                // Already in colors phase, advance sequence ONLY IF NOT freeball and NOT A2 Mode
+                if (!payload?.isFreeball && !state.isA2Mode) {
                     const index = COLOR_SEQUENCE.indexOf(value);
                     if (index !== -1 && index >= state.currentColorIndex) {
                         state.currentColorIndex = index + 1;
@@ -220,6 +219,7 @@ function handleAction(prevState, action, payload) {
             state.currentBreak = 0;
             state.pottedBalls = { "0": [], "1": [] };
             state.isFreeballAvailable = false;
+            state.isA2Mode = false; // MUST reset A2 mode for next frame
 
             if (isMatchOver) {
                 state.isWaitingForMatch = true;
@@ -240,6 +240,7 @@ function handleAction(prevState, action, payload) {
             state.lastFrameWinner = null;
             state.lastFoul = null;
             state.isWaitingForMatch = false;
+            state.isA2Mode = false; // Reset just in case they were in A2
             break;
 
         case 'START_A2_MODE':

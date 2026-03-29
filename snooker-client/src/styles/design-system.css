@@ -38,7 +38,7 @@ body[data-theme='midnight'] {
 body[data-theme='triangle'] {
   --theme-primary: #00d2ff;
   --theme-secondary: #ff0080;
-  --theme-bg-gradient: url('/backgrounds/triangle.jpg') no-repeat center center fixed;
+  --theme-bg-gradient: url('https://huggingface.co/spaces/ero0ck/snooker-live/resolve/main/snooker-client/public/backgrounds/triangle.jpg') no-repeat center center fixed;
   --theme-card-bg: rgba(0, 0, 0, 0.6);
   --theme-active-glow: rgba(0, 210, 255, 0.5);
 }
@@ -46,7 +46,7 @@ body[data-theme='triangle'] {
 body[data-theme='waves'] {
   --theme-primary: #00d2ff;
   --theme-secondary: #0080ff;
-  --theme-bg-gradient: url('/backgrounds/waves.jpg') no-repeat center center fixed;
+  --theme-bg-gradient: url('https://huggingface.co/spaces/ero0ck/snooker-live/resolve/main/snooker-client/public/backgrounds/waves.jpg') no-repeat center center fixed;
   --theme-card-bg: rgba(0, 0, 0, 0.6);
   --theme-active-glow: rgba(0, 128, 255, 0.4);
 }
@@ -54,7 +54,7 @@ body[data-theme='waves'] {
 body[data-theme='grid'] {
   --theme-primary: #ff2d55;
   --theme-secondary: #00b894;
-  --theme-bg-gradient: url('/backgrounds/grid.jpg') no-repeat center center fixed;
+  --theme-bg-gradient: url('https://huggingface.co/spaces/ero0ck/snooker-live/resolve/main/snooker-client/public/backgrounds/grid.jpg') no-repeat center center fixed;
   --theme-card-bg: rgba(0, 0, 0, 0.7);
   --theme-active-glow: rgba(255, 45, 85, 0.4);
 }
@@ -62,7 +62,7 @@ body[data-theme='grid'] {
 body[data-theme='carbon'] {
   --theme-primary: #ff6b21;
   --theme-secondary: #333333;
-  --theme-bg-gradient: url('/backgrounds/carbon.jpg') no-repeat center center fixed;
+  --theme-bg-gradient: url('https://huggingface.co/spaces/ero0ck/snooker-live/resolve/main/snooker-client/public/backgrounds/carbon.jpg') no-repeat center center fixed;
   --theme-card-bg: rgba(0, 0, 0, 0.7);
   --theme-active-glow: rgba(255, 107, 33, 0.4);
 }
@@ -70,7 +70,7 @@ body[data-theme='carbon'] {
 body[data-theme='city'] {
   --theme-primary: #00d2ff;
   --theme-secondary: #ff7675;
-  --theme-bg-gradient: url('/backgrounds/city.jpg') no-repeat center center fixed;
+  --theme-bg-gradient: url('https://huggingface.co/spaces/ero0ck/snooker-live/resolve/main/snooker-client/public/backgrounds/city.jpg') no-repeat center center fixed;
   --theme-card-bg: rgba(0, 0, 0, 0.6);
   --theme-active-glow: rgba(0, 210, 255, 0.4);
 }
@@ -78,7 +78,7 @@ body[data-theme='city'] {
 body[data-theme='abstract'] {
   --theme-primary: #4a69bd;
   --theme-secondary: #1e3799;
-  --theme-bg-gradient: url('/backgrounds/abstract.jpg') no-repeat center center fixed;
+  --theme-bg-gradient: url('https://huggingface.co/spaces/ero0ck/snooker-live/resolve/main/snooker-client/public/backgrounds/abstract.jpg') no-repeat center center fixed;
   --theme-card-bg: rgba(0, 0, 0, 0.65);
   --theme-active-glow: rgba(74, 105, 189, 0.4);
 }

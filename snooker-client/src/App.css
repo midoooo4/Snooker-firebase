@@ -166,7 +166,8 @@ body.full-screen-app #root {
 
 /* Segmented Control */
 .segmented-control {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   padding: 0.4rem;

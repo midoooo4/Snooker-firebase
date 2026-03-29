@@ -273,8 +273,8 @@ function Home() {
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
             <h1 style={{ margin: '0 0 1rem 0', fontSize: '2rem', fontWeight: 900, color: '#fff' }}>🎱 Snooker Pro</h1>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem' }}>
-              <button className="fab-btn gold" onClick={() => navigate('/tournament')}>🏆 Tournoi</button>
-              <button className="fab-btn" onClick={() => navigate('/admin')} style={{ padding: '0.6rem 0.9rem', fontSize: '1.2rem' }}>⚙️</button>
+              <button className="btn-premium gold" onClick={() => navigate('/tournament')} style={{ padding: '0.6rem 1rem', fontSize: '1rem' }}>🏆 Tournoi</button>
+              <button className="btn-premium secondary" onClick={() => navigate('/admin')} style={{ padding: '0.6rem 0.9rem', width: 'auto' }}>⚙️</button>
             </div>
           </div>
 
@@ -350,10 +350,10 @@ function Home() {
 
           {/* Launch Buttons */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <button onClick={joinAsRemote} className="launch-btn launch-btn-remote">
+            <button onClick={joinAsRemote} className="btn-premium primary">
               📱 {tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver ? 'Reprendre le Match' : 'Lancer le Remote'}
             </button>
-            <button onClick={joinAsTv} className="launch-btn launch-btn-tv">
+            <button onClick={joinAsTv} className="btn-premium secondary">
               📺 Affichage TV
             </button>
           </div>
@@ -373,8 +373,7 @@ function Home() {
                 />
               </div>
               <button
-                className="launch-btn"
-                style={{ background: 'linear-gradient(135deg, #3498db, #2980b9)', color: 'white', boxShadow: '0 8px 20px rgba(52,152,219,0.3)' }}
+                className="btn-premium accent"
                 onClick={addNextPlayerContext}
               >
                 ➕ Ajouter à la File

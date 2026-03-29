@@ -212,4 +212,66 @@ button {
   border: none;
   background: transparent;
   outline: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* --- UNIFIED PREMIUM BUTTON SYSTEM --- */
+.btn-premium {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  transition: all 0.2s ease;
+  gap: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Variant: Primary (Theme Based) */
+.btn-premium.primary {
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+  color: #000;
+  box-shadow: 0 4px 15px var(--theme-active-glow);
+}
+
+.btn-premium.primary:hover {
+  filter: brightness(1.1);
+}
+
+/* Variant: Secondary (Glassy) */
+.btn-premium.secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.btn-premium.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Variant: Accent (Blue/Queue) */
+.btn-premium.accent {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-premium.accent:hover {
+  filter: brightness(1.1);
+}
+
+/* Variant: Gold (Tournament) */
+.btn-premium.gold {
+  background: linear-gradient(135deg, #f1c40f, #e67e22);
+  color: #000;
+  box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
 }

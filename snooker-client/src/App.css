@@ -130,40 +130,6 @@ body.full-screen-app #root {
   letter-spacing: -0.5px;
 }
 
-/* Floating Action Buttons */
-.fab-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border-radius: 50px;
-  padding: 0.6rem 1.2rem;
-  font-weight: 700;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  gap: 0.4em;
-}
-
-.fab-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.05);
-}
-
-.fab-btn.gold {
-  background: linear-gradient(135deg, rgba(241, 196, 15, 0.2), rgba(230, 126, 34, 0.2));
-  border-color: rgba(241, 196, 15, 0.5);
-  color: var(--theme-secondary);
-}
-
-.fab-btn.gold:hover {
-  background: linear-gradient(135deg, rgba(241, 196, 15, 0.4), rgba(230, 126, 34, 0.4));
-  box-shadow: 0 8px 25px rgba(241, 196, 15, 0.3);
-}
-
 /* Segmented Control */
 .segmented-control {
   display: flex;
@@ -262,60 +228,6 @@ select.input-premium {
 select.input-premium option {
   background: #111820;
   color: #fff;
-}
-
-/* Massive Launch Buttons */
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
-  70% { box-shadow: 0 0 0 20px rgba(46, 204, 113, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-}
-
-.launch-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 1.25rem;
-  font-size: 1.15rem;
-  font-weight: 800;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  text-decoration: none;
-  outline: none;
-}
-
-.launch-btn-remote {
-  background: linear-gradient(135deg, var(--theme-primary), var(--theme-primary-hover));
-  color: #000;
-  box-shadow: 0 8px 25px var(--theme-active-glow);
-  animation: pulseGlow 3s infinite;
-}
-
-.launch-btn-remote:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 15px 35px var(--theme-active-glow);
-  background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
-}
-
-.launch-btn-remote:active {
-  transform: translateY(2px) scale(0.98);
-}
-
-.launch-btn-tv {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
-  backdrop-filter: blur(10px);
-}
-
-.launch-btn-tv:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Tournament Match Banner */

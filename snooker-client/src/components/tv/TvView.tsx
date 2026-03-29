@@ -10,27 +10,37 @@ export default function TvView() {
     const [searchParams, setSearchParams] = useSearchParams();
     const { socket, gameState, connected, sendAction } = useSocket(roomCode || '');
 
-    // Theme Sync Logic
+    // Theme Sync Logic — polls every 5s AND listens to socket events
     useEffect(() => {
         const applyTheme = (theme: string) => {
             document.body.setAttribute('data-theme', theme);
             document.documentElement.setAttribute('data-theme', theme);
         };
 
-        // Fetch initial theme explicitly on TvView mount
-        fetch(`${API_URL}/api/config/tables`)
-            .then(res => res.json())
-            .then(data => {
+        const fetchTheme = () => {
+            fetch(`${API_URL}/api/config/tables`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.appTheme) applyTheme(data.appTheme);
+                })
+                .catch(() => {}); // silently ignore fetch errors
+        };
+
+        // Fetch immediately on mount
+        fetchTheme();
+
+        // Poll every 5 seconds as a reliable fallback
+        const pollInterval = setInterval(fetchTheme, 5000);
+
+        // Also listen to real-time socket events for instant updates
+        if (socket) {
+            socket.on('config_updated', (data: { appTheme?: string }) => {
                 if (data && data.appTheme) applyTheme(data.appTheme);
             });
-
-        if (!socket) return;
-        
-        socket.on('config_updated', (data: { appTheme?: string }) => {
-            if (data && data.appTheme) applyTheme(data.appTheme);
-        });
+        }
 
         return () => {
+            clearInterval(pollInterval);
             if (socket) socket.off('config_updated');
             document.body.removeAttribute('data-theme');
             document.documentElement.removeAttribute('data-theme');

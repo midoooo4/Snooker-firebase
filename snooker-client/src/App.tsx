@@ -481,41 +481,6 @@ function Home() {
 }
 
 function App() {
-  const API_URL = import.meta.env.PROD ? 'https://ero0ck-snooker-live.hf.space' : 'http://localhost:3001';
-
-  useEffect(() => {
-    // Listen for theme updates globally
-    const socket = io(API_URL, { transports: ['websocket'] });
-    
-    const applyThemeIfTv = (theme: string) => {
-      if (window.location.pathname.startsWith('/tv/')) {
-        document.body.setAttribute('data-theme', theme);
-        document.documentElement.setAttribute('data-theme', theme);
-      } else {
-        document.body.removeAttribute('data-theme');
-        document.documentElement.removeAttribute('data-theme');
-      }
-    };
-
-    fetch(`${API_URL}/api/config/tables`)
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.appTheme) {
-          applyThemeIfTv(data.appTheme);
-        }
-      });
-
-    socket.on('config_updated', (data: { appTheme?: string }) => {
-      if (data && data.appTheme) {
-        applyThemeIfTv(data.appTheme);
-      }
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, [API_URL]);
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />

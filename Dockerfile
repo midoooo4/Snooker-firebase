@@ -7,8 +7,8 @@ ENV CI=true
 ENV NODE_OPTIONS="--max-old-space-size=2048"
 
 # ── force full rebuild by changing this value ──
-# Bumping CACHE_BUST to v6 to force HF to rebuild from scratch
-ARG CACHE_BUST=2026-03-29-v6
+# Bumping CACHE_BUST to v7 to force HF to rebuild from scratch
+ARG CACHE_BUST=2026-03-29-v7
 RUN echo "Cache bust: $CACHE_BUST"
 
 # Copy package files (leverages Docker caching)

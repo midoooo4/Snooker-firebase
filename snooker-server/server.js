@@ -33,7 +33,7 @@ app.use('/backgrounds', express.static(path.join(__dirname, '../snooker-client/p
 
 app.get('/api/version', (req, res) => {
     console.log('[API] /api/version called');
-    res.json({ version: 3, status: 'ok', timestamp: new Date().toISOString(), debug: true });
+    res.json({ version: 4, status: 'ok', timestamp: new Date().toISOString(), debug: true });
 });
 // REST API for stats
 app.get('/api/stats', async (req, res) => {
@@ -423,7 +423,7 @@ async function startServer() {
     // Start listening immediately to "claim" the port and satisfy Hugging Face's startup check
     server.listen(PORT, '0.0.0.0', () => {
         console.log(`🚀 Server listening on port ${PORT} (initializing in background...)`);
-        console.log(`Version: 2`);
+        console.log(`Version: 4`);
     });
 
     try {

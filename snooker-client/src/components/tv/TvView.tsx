@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSocket } from '../../hooks/useSocket';
-import { io } from 'socket.io-client';
 import './TvView.css';
 
 const API_URL = import.meta.env.PROD ? 'https://ero0ck-snooker-live.hf.space' : 'http://localhost:3001';
@@ -9,7 +8,7 @@ const API_URL = import.meta.env.PROD ? 'https://ero0ck-snooker-live.hf.space' : 
 export default function TvView() {
     const { roomCode } = useParams<{ roomCode: string }>();
     const [searchParams, setSearchParams] = useSearchParams();
-    const { gameState, connected, sendAction } = useSocket(roomCode || '');
+    const { socket, gameState, connected, sendAction } = useSocket(roomCode || '');
 
     // Theme Sync Logic
     useEffect(() => {
@@ -25,18 +24,18 @@ export default function TvView() {
                 if (data && data.appTheme) applyTheme(data.appTheme);
             });
 
-        // Create socket listener for config updates
-        const socket = io(API_URL, { transports: ['websocket'] });
+        if (!socket) return;
+        
         socket.on('config_updated', (data: { appTheme?: string }) => {
             if (data && data.appTheme) applyTheme(data.appTheme);
         });
 
         return () => {
-            socket.disconnect();
+            if (socket) socket.off('config_updated');
             document.body.removeAttribute('data-theme');
             document.documentElement.removeAttribute('data-theme');
         };
-    }, []);
+    }, [socket]);
 
     // Send configuration if we just joined from home with params
     useEffect(() => {

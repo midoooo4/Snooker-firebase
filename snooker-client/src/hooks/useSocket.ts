@@ -65,5 +65,5 @@ export function useSocket(roomCode: string) {
         }
     }, [socket, connected, roomCode]);
 
-    return { gameState, connected, sendAction };
+    return { socket, gameState, connected, sendAction };
 }

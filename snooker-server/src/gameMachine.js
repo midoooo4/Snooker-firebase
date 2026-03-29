@@ -230,6 +230,7 @@ function handleAction(prevState, action, payload) {
             break;
 
         case 'START_COLORS_ONLY':
+            console.log(`[STATE] Manual reset: START_COLORS_ONLY`);
             state.scores = [0, 0];
             state.phase = 'COLORS';
             state.currentColorIndex = 0;
@@ -244,6 +245,7 @@ function handleAction(prevState, action, payload) {
             break;
 
         case 'START_A2_MODE':
+            console.log(`[STATE] Manual reset: START_A2_MODE (Black only mode)`);
             // "A2" - Black ball mode: Black scores 1 point, first to 2 wins
             state.scores = [0, 0];
             state.phase = 'COLORS';

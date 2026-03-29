@@ -33,7 +33,7 @@ app.use('/backgrounds', express.static(path.join(__dirname, '../snooker-client/p
 
 app.get('/api/version', (req, res) => {
     console.log('[API] /api/version called');
-    res.json({ version: 2, status: 'ok', timestamp: new Date().toISOString() });
+    res.json({ version: 3, status: 'ok', timestamp: new Date().toISOString(), debug: true });
 });
 // REST API for stats
 app.get('/api/stats', async (req, res) => {
@@ -198,7 +198,14 @@ let appTheme = savedConfig.appTheme || 'emerald';
 console.log(`[CONFIG] Loaded: ${activeTablesCount} tables, ${pricePerFrame} DH/frame, Theme: ${appTheme}`);
 
 app.get('/api/config/tables', (req, res) => {
-    res.json({ count: activeTablesCount, pricePerFrame, appTheme });
+    // Explicitly guarantee appTheme exists in response
+    const safeTheme = appTheme || 'emerald';
+    res.json({ 
+        count: activeTablesCount, 
+        pricePerFrame, 
+        appTheme: safeTheme,
+        serverTime: new Date().toISOString()
+    });
 });
 
 app.post('/api/admin/config/tables', verifyAdminToken, (req, res) => {
@@ -310,7 +317,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('game_action', ({ roomCode, action, payload }) => {
-        console.log(`[ACTION] Room: ${roomCode}, Action: ${action}, Payload:`, payload);
+        console.log(`[ACTION] Room: ${roomCode}, Action: ${action}, Payload:`, JSON.stringify(payload || {}));
         const room = getRoom(roomCode);
         if (room) {
             try {

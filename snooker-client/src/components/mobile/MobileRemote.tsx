@@ -188,14 +188,14 @@ export default function MobileRemote() {
                     <div className="special-actions-grid">
                         <button className="btn-special" onClick={() => {
                             if (window.confirm("RESET: Rejouer uniquement les couleurs (0-0) ?")) {
-                                handleAction('START_COLORS_ONLY');
+                                handleAction('START_COLORS_ONLY', { mode: 'COLORS' });
                             }
                         }}>
                              🎨 Rejouer Couleurs
                         </button>
                         <button className="btn-special btn-a2" onClick={() => {
                             if (window.confirm("SPECIAL: Activer le mode A2 (2 Noires) ?")) {
-                                handleAction('START_A2_MODE');
+                                handleAction('START_A2_MODE', { mode: 'A2' });
                             }
                         }}>
                              ⭐ Activer Mode A2

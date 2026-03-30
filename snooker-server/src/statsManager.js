@@ -3,6 +3,26 @@ const fs = require('fs');
 const path = require('path');
 
 const STATS_FILE = path.join(__dirname, '../data/stats.json');
+const MATCHES_FILE = path.join(__dirname, '../data/matches.json');
+
+function readLocalMatches() {
+    try {
+        if (fs.existsSync(MATCHES_FILE)) {
+            return JSON.parse(fs.readFileSync(MATCHES_FILE, 'utf8'));
+        }
+    } catch (e) {
+        console.error('Error reading local matches:', e);
+    }
+    return [];
+}
+
+function writeLocalMatches(matches) {
+    try {
+        fs.writeFileSync(MATCHES_FILE, JSON.stringify(matches, null, 2));
+    } catch (e) {
+        console.error('Error writing local matches:', e);
+    }
+}
 
 function readLocalStats() {
     try {
@@ -38,6 +58,21 @@ async function getPlayerStats() {
     }
 }
 
+async function getMatchHistory() {
+    if (!db) return readLocalMatches();
+    try {
+        const snapshot = await db.collection('matches').orderBy('timestamp', 'desc').limit(50).get();
+        const matches = [];
+        snapshot.forEach(doc => {
+            matches.push({ id: doc.id, ...doc.data() });
+        });
+        return matches;
+    } catch (err) {
+        console.error('Error fetching matches:', err);
+        return readLocalMatches();
+    }
+}
+
 async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePerFrame) {
     if (!winner || !loser) return;
 
@@ -68,6 +103,12 @@ async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePe
         stats[loser].matches += frames;
         stats[loser].amountOwed += tariff;
 
+        const matchEntry = { winner, loser, matchType, frames, timestamp: Date.now() };
+        const localMatches = readLocalMatches();
+        localMatches.unshift(matchEntry);
+        if (localMatches.length > 50) localMatches.pop(); // Keep last 50
+        writeLocalMatches(localMatches);
+
         writeLocalStats(stats);
         console.log(`Successfully recorded match to local storage: ${winner} beat ${loser}. Loser owes ${tariff} DH (${frames} frames × ${price} DH)`);
         return;
@@ -75,6 +116,7 @@ async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePe
 
     const winnerRef = db.collection('stats').doc(winner);
     const loserRef = db.collection('stats').doc(loser);
+    const matchRef = db.collection('matches').doc();
 
     try {
         await db.runTransaction(async (t) => {
@@ -93,6 +135,7 @@ async function recordMatchResult(winner, loser, matchType, framesPlayed, pricePe
 
             t.set(winnerRef, wData);
             t.set(loserRef, lData);
+            t.set(matchRef, { winner, loser, matchType, frames, timestamp: Date.now() });
         });
         console.log(`Successfully recorded match to Firebase: ${winner} beat ${loser}. Loser owes ${tariff} DH (${frames} frames)`);
     } catch (err) {
@@ -138,13 +181,19 @@ async function clearAllStats() {
         return;
     }
     try {
-        const snapshot = await db.collection('stats').get();
+        const statsSnap = await db.collection('stats').get();
         const batch = db.batch();
-        snapshot.docs.forEach((doc) => {
+        statsSnap.docs.forEach((doc) => {
             batch.delete(doc.ref);
         });
+
+        const matchesSnap = await db.collection('matches').get();
+        matchesSnap.docs.forEach((doc) => {
+            batch.delete(doc.ref);
+        });
+
         await batch.commit();
-        console.log('All stats cleared from Firebase.');
+        console.log('All stats and matches cleared from Firebase.');
     } catch (err) {
         console.error('Error clearing stats:', err);
     }
@@ -152,6 +201,7 @@ async function clearAllStats() {
 
 module.exports = {
     getPlayerStats,
+    getMatchHistory,
     recordMatchResult,
     clearAllStats,
     markPlayerPaid

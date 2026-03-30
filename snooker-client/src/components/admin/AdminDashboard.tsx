@@ -21,6 +21,7 @@ export default function AdminDashboard() {
     const [pricePerFrame, setPricePerFrame] = useState(20);
     const [tournamentPlayers, setTournamentPlayers] = useState('');
     const [tournament, setTournament] = useState<any>(null);
+    const [matches, setMatches] = useState<any[]>([]);
 
     const API_URL = import.meta.env.PROD ? 'https://ero0ck-snooker-live.hf.space' : 'http://localhost:3001';
 
@@ -32,8 +33,22 @@ export default function AdminDashboard() {
             });
             const data = await res.json();
             setStats(data);
+            fetchMatches();
         } catch (e) {
             console.error('Failed to fetch stats', e);
+        }
+    };
+
+    const fetchMatches = async () => {
+        try {
+            const token = localStorage.getItem('admin_token');
+            const res = await fetch(`${API_URL}/api/admin/matches`, {
+                headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+            });
+            const data = await res.json();
+            setMatches(data);
+        } catch (e) {
+            console.error('Failed to fetch matches', e);
         }
     };
 
@@ -97,6 +112,7 @@ export default function AdminDashboard() {
                     setShowAdminLogin(false);
                     setAdminPassword('');
                     fetchStats();
+                    fetchMatches();
                 } else {
                     alert(`Serveur obsolète détecté (V1). Attendez que Hugging Face finisse la mise à jour (V2). (DEBUG: ${JSON.stringify(data)})`);
                 }
@@ -450,6 +466,49 @@ export default function AdminDashboard() {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        </div>
+
+                        {/* Recent Matches Section */}
+                        <div style={{ marginTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.07)', paddingTop: '2rem' }}>
+                            <h3 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                🕒 Derniers Matchs
+                            </h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                                {matches.map((m, idx) => (
+                                    <div key={m.id || idx} style={{ 
+                                        background: 'linear-gradient(90deg, rgba(46,204,113,0.05), rgba(231,76,60,0.05))', 
+                                        padding: '1.25rem', 
+                                        borderRadius: '16px', 
+                                        border: '1px solid rgba(255,255,255,0.05)', 
+                                        display: 'flex', 
+                                        justifyContent: 'space-between', 
+                                        alignItems: 'center' 
+                                    }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
+                                            <div style={{ textAlign: 'right', minWidth: '120px' }}>
+                                                <div style={{ color: '#2ecc71', fontWeight: 900, fontSize: '1.1rem' }}>{m.winner}</div>
+                                                <div style={{ color: 'rgba(46,204,113,0.4)', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase' }}>GAGNANT</div>
+                                            </div>
+                                            <span style={{ color: 'rgba(255,255,255,0.1)', fontWeight: 900, fontSize: '0.9rem' }}>VS</span>
+                                            <div style={{ minWidth: '120px' }}>
+                                                <div style={{ color: '#e74c3c', fontWeight: 900, fontSize: '1.1rem' }}>{m.loser}</div>
+                                                <div style={{ color: 'rgba(231,76,60,0.4)', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase' }}>PERDANT</div>
+                                            </div>
+                                        </div>
+                                        <div style={{ textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.05)', paddingLeft: '1.5rem' }}>
+                                            <div style={{ color: '#f1c40f', fontWeight: 800, fontSize: '0.9rem' }}>{m.frames} Fr.</div>
+                                            <div style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.65rem', marginTop: '4px' }}>
+                                                {new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                                {matches.length === 0 && (
+                                    <div style={{ textAlign: 'center', color: 'rgba(255,255,255,0.15)', padding: '3rem', background: 'rgba(255,255,255,0.02)', borderRadius: '16px', border: '1px dashed rgba(255,255,255,0.05)' }}>
+                                        Aucun match enregistré.
+                                    </div>
+                                )}
                             </div>
                         </div>
 

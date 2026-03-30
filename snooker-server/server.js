@@ -47,6 +47,12 @@ app.delete('/api/stats', verifyAdminToken, async (req, res) => {
     res.json({ success: true });
 });
 
+app.get('/api/admin/matches', verifyAdminToken, async (req, res) => {
+    const { getMatchHistory } = require('./src/statsManager');
+    const matches = await getMatchHistory();
+    res.json(matches);
+});
+
 // Admin Auth Endpoints
 app.post('/api/admin/login', (req, res) => {
     const { password } = req.body;

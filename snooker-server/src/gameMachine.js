@@ -17,7 +17,7 @@ const COLOR_SEQUENCE = [
     BALL_VALUES.BLACK
 ];
 
-function createGame(players = ['Player 1', 'Player 2'], matchType = 'FRAME_UNIQUE') {
+function createGame(players = ['Joueur 1', 'Joueur 2'], matchType = 'FRAME_UNIQUE') {
     return {
         players,
         matchType, // e.g., 'FRAME_UNIQUE', 3 (Best of 3), 5 (Best of 5)

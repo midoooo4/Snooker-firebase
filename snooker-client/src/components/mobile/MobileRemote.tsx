@@ -17,13 +17,21 @@ export default function MobileRemote() {
             const players = [searchParams.get('p1'), searchParams.get('p2')];
             const matchType = searchParams.get('type') || 'FRAME_UNIQUE';
 
-            // Only send config if we explicitly want a reset or if the current game is empty
-            const isMatchActive = gameState && gameState.players && gameState.players[0] !== 'A';
+            // Match activity check based on server state
+            const isActuallyInProgress = gameState && !gameState.isWaitingForMatch && !gameState.isMatchOver;
 
-            if (searchParams.get('reset') === 'true' || !isMatchActive) {
-                if (searchParams.get('reset') === 'true') {
-                    sendAction('RESET_GAME', { players, matchType });
-                } else {
+            if (searchParams.get('reset') === 'true') {
+                // Forced hard reset
+                sendAction('RESET_GAME', { players, matchType });
+            } else if (!isActuallyInProgress) {
+                // Initial match setup
+                sendAction('SET_MATCH_CONFIG', { players, matchType });
+            } else {
+                // Match is in progress, check if name update is needed
+                const currentP1 = gameState.players[0] || '';
+                const currentP2 = gameState.players[1] || '';
+                if (currentP1 !== players[0] || currentP2 !== players[1]) {
+                    console.log("[SYNC] Updating player names for active match");
                     sendAction('SET_MATCH_CONFIG', { players, matchType });
                 }
             }
@@ -122,7 +130,7 @@ export default function MobileRemote() {
                     style={{ cursor: gameState!.activePlayer !== 0 ? 'pointer' : 'default' }}
                 >
                     <div className="player-label">
-                        {gameState!.activePlayer === 0 && <span className="play-icon">▶</span>} {gameState!.players[0] || 'A'}
+                        {gameState!.activePlayer === 0 && <span className="play-icon">▶</span>} {gameState!.players[0] || 'Joueur 1'}
                     </div>
                     <div className="score-value">{gameState!.scores[0]}</div>
                 </div>
@@ -132,7 +140,7 @@ export default function MobileRemote() {
                     style={{ cursor: gameState!.activePlayer !== 1 ? 'pointer' : 'default' }}
                 >
                     <div className="player-label">
-                        {gameState!.activePlayer === 1 && <span className="play-icon">▶</span>} {gameState!.players[1] || 'B'}
+                        {gameState!.activePlayer === 1 && <span className="play-icon">▶</span>} {gameState!.players[1] || 'Joueur 2'}
                     </div>
                     <div className="score-value score-dimmed">{gameState!.scores[1]}</div>
                 </div>

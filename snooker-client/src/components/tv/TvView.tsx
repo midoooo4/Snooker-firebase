@@ -216,7 +216,7 @@ export default function TvView() {
                 {/* Scoreboard Area */}
                 <div className="scoreboard-container flex-center">
                     <div className={`player-card ${gameState!.activePlayer === 0 ? 'active' : ''}`}>
-                        <div className="player-name">{gameState!.players[0]}</div>
+                        <div className="player-name">{gameState!.players[0] || 'Joueur 1'}</div>
 
                         {/* Potted Balls Tracker */}
                         <div className="potted-balls-container">
@@ -303,7 +303,7 @@ export default function TvView() {
                     </div>
 
                     <div className={`player-card ${gameState!.activePlayer === 1 ? 'active' : ''}`}>
-                        <div className="player-name">{gameState!.players[1]}</div>
+                        <div className="player-name">{gameState!.players[1] || 'Joueur 2'}</div>
 
                         {/* Potted Balls Tracker */}
                         <div className="potted-balls-container">

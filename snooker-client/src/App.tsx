@@ -157,27 +157,32 @@ function Home() {
   }, [tableState?.players, tableState?.queue, selectedTable, tournament]);
 
   const joinAsRemote = () => {
-    const isSameMatch = tableState?.players?.[0] === player1 && tableState?.players?.[1] === player2;
-    const isMatchActive = isSameMatch && tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver;
+    const isActuallyInProgress = tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver;
     const params = new URLSearchParams();
-    if (!isMatchActive) {
-      params.set('p1', player1);
-      params.set('p2', player2);
-      params.set('type', matchType);
+    
+    // Only force a full reset if no match is currently active on this table
+    if (!isActuallyInProgress) {
       params.set('reset', 'true');
     }
+    
+    // Always pass names and type so we can update them without resetting the score
+    params.set('p1', player1);
+    params.set('p2', player2);
+    params.set('type', matchType);
+    
     navigate(`/remote/${selectedTable}?${params.toString()}`);
   };
 
   const joinAsTv = () => {
-    const isSameMatch = tableState?.players?.[0] === player1 && tableState?.players?.[1] === player2;
-    const isMatchActive = isSameMatch && tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver;
+    const isActuallyInProgress = tableState && !tableState.isWaitingForMatch && !tableState.isMatchOver;
     const params = new URLSearchParams();
-    if (!isMatchActive) {
+    
+    if (!isActuallyInProgress) {
       params.set('p1', player1);
       params.set('p2', player2);
       params.set('type', matchType);
     }
+    
     navigate(`/tv/${selectedTable}?${params.toString()}`);
   };
 

@@ -61,14 +61,18 @@ async function getPlayerStats() {
 async function getMatchHistory() {
     if (!db) return readLocalMatches();
     try {
-        const snapshot = await db.collection('matches').orderBy('timestamp', 'desc').limit(50).get();
+        // Remove .orderBy() as it requires a manual Firestore index to be created first.
+        // We'll limit to 100 to be safe and sort locally.
+        const snapshot = await db.collection('matches').limit(100).get();
         const matches = [];
         snapshot.forEach(doc => {
             matches.push({ id: doc.id, ...doc.data() });
         });
-        return matches;
+        // Sort descending by timestamp
+        matches.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        return matches.slice(0, 50); // Keep only the latest 50
     } catch (err) {
-        console.error('Error fetching matches:', err);
+        console.error('Error fetching matches from Firestore:', err);
         return readLocalMatches();
     }
 }

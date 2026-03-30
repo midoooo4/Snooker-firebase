@@ -4,11 +4,11 @@ WORKDIR /app/snooker-client
 
 # Standard environment settings for memory-constrained environments
 ENV CI=true
-ENV NODE_OPTIONS="--max-old-space-size=1536"
+ENV NODE_OPTIONS="--max-old-space-size=3072"
 
 # Copy package files separately to leverage Docker layer caching
 COPY snooker-client/package*.json ./
-RUN npm ci --loglevel error
+RUN npm ci --loglevel error --prefer-offline
 
 # Copy the rest of the client source and build
 COPY snooker-client/ ./
@@ -25,11 +25,11 @@ ENV PORT=7860
 ENV NODE_OPTIONS="--max-old-space-size=1536"
 
 # Cache bust argument to force rebuild if needed
-ARG CACHE_BUST=2026-03-30-v8
+ARG CACHE_BUST=2026-03-30-v9
 
 # Copy server dependency files and install production-only modules
 COPY snooker-server/package*.json ./snooker-server/
-RUN cd snooker-server && npm ci --only=production --loglevel error
+RUN cd snooker-server && npm ci --only=production --loglevel error --prefer-offline
 
 # Copy the built client assets from the build stage
 COPY --from=build-client /app/snooker-client/dist ./snooker-client/dist

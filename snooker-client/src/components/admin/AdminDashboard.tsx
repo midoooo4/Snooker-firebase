@@ -58,7 +58,6 @@ export default function AdminDashboard() {
             if (!token) return;
 
             const res = await fetch(`${API_URL}/api/admin/check`, {
-                credentials: 'include',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
@@ -102,7 +101,6 @@ export default function AdminDashboard() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password: trimmedPassword }),
-                credentials: 'include'
             });
             const data = await res.json();
             if (res.ok) {
@@ -130,7 +128,6 @@ export default function AdminDashboard() {
             const token = localStorage.getItem('admin_token');
             await fetch(`${API_URL}/api/admin/logout`, {
                 method: 'POST',
-                credentials: 'include',
                 headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             });
             localStorage.removeItem('admin_token');
@@ -160,7 +157,6 @@ export default function AdminDashboard() {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ playerName }),
-                credentials: 'include'
             });
 
             if (res.ok) {
@@ -181,7 +177,6 @@ export default function AdminDashboard() {
             const token = localStorage.getItem('admin_token');
             const res = await fetch(`${API_URL}/api/admin/daily-archive`, {
                 method: 'POST',
-                credentials: 'include',
                 headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             });
             if (res.ok) {
@@ -201,7 +196,6 @@ export default function AdminDashboard() {
             const token = localStorage.getItem('admin_token');
             const res = await fetch(`${API_URL}/api/stats`, {
                 method: 'DELETE',
-                credentials: 'include',
                 headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             });
             if (res.ok) {

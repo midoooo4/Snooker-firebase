@@ -15,7 +15,8 @@ export default function AdminDashboard() {
     const [showAdminLogin, setShowAdminLogin] = useState(true);
 
     // Admin Tabs
-    const [activeTab, setActiveTab] = useState<'STATS' | 'TOURNAMENT'>('STATS');
+    const [activeTab, setActiveTab] = useState<'STATS' | 'TOURNAMENT' | 'APPEARANCE'>('STATS');
+    const [appTheme, setAppTheme] = useState('emerald');
     const [tablesCount, setTablesCount] = useState(1);
     const [pricePerFrame, setPricePerFrame] = useState(20);
     const [tournamentPlayers, setTournamentPlayers] = useState('');
@@ -42,7 +43,6 @@ export default function AdminDashboard() {
             if (!token) return;
 
             const res = await fetch(`${API_URL}/api/admin/check`, {
-                credentials: 'include',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
@@ -62,6 +62,10 @@ export default function AdminDashboard() {
             const confData = await resConf.json();
             if (confData.count) setTablesCount(confData.count);
             if (confData.pricePerFrame) setPricePerFrame(confData.pricePerFrame);
+            if (confData.appTheme) {
+                setAppTheme(confData.appTheme);
+                document.documentElement.setAttribute('data-theme', confData.appTheme);
+            }
 
             const resTour = await fetch(`${API_URL}/api/tournament`);
             const tourData = await resTour.json();
@@ -83,7 +87,6 @@ export default function AdminDashboard() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ password: trimmedPassword }),
-                credentials: 'include'
             });
             const data = await res.json();
             if (res.ok) {
@@ -110,7 +113,6 @@ export default function AdminDashboard() {
             const token = localStorage.getItem('admin_token');
             await fetch(`${API_URL}/api/admin/logout`, {
                 method: 'POST',
-                credentials: 'include',
                 headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             });
             localStorage.removeItem('admin_token');
@@ -140,7 +142,6 @@ export default function AdminDashboard() {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ playerName }),
-                credentials: 'include'
             });
 
             if (res.ok) {
@@ -161,7 +162,6 @@ export default function AdminDashboard() {
             const token = localStorage.getItem('admin_token');
             const res = await fetch(`${API_URL}/api/admin/daily-archive`, {
                 method: 'POST',
-                credentials: 'include',
                 headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             });
             if (res.ok) {
@@ -181,7 +181,6 @@ export default function AdminDashboard() {
             const token = localStorage.getItem('admin_token');
             const res = await fetch(`${API_URL}/api/stats`, {
                 method: 'DELETE',
-                credentials: 'include',
                 headers: token ? { 'Authorization': `Bearer ${token}` } : {}
             });
             if (res.ok) {
@@ -223,6 +222,23 @@ export default function AdminDashboard() {
                 body: JSON.stringify({ price: pricePerFrame })
             });
             if (res.ok) alert(`Tarif mis à jour : ${pricePerFrame} DH / frame !`);
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const saveAppTheme = async (theme: string) => {
+        try {
+            const token = localStorage.getItem('admin_token');
+            const res = await fetch(`${API_URL}/api/admin/config/theme`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                body: JSON.stringify({ theme })
+            });
+            if (res.ok) {
+                setAppTheme(theme);
+                document.documentElement.setAttribute('data-theme', theme);
+            }
         } catch (e) {
             console.error(e);
         }
@@ -353,6 +369,13 @@ export default function AdminDashboard() {
                         style={activeTab === 'TOURNAMENT' ? { background: 'linear-gradient(135deg, #f1c40f, #e67e22)', color: '#000', boxShadow: '0 4px 15px rgba(241,196,15,0.4)' } : {}}
                     >
                         🏆 Tournois & Tables
+                    </button>
+                    <button
+                        className={`segment-btn ${activeTab === 'APPEARANCE' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('APPEARANCE')}
+                        style={activeTab === 'APPEARANCE' ? { background: 'linear-gradient(135deg, #00d2ff, #f39c12)', color: '#000', boxShadow: '0 4px 15px rgba(0, 210, 255, 0.4)' } : {}}
+                    >
+                        🎨 Apparence
                     </button>
                 </div>
 
@@ -517,6 +540,47 @@ export default function AdminDashboard() {
                             )}
                         </div>
                     </>
+                )}
+
+                {/* ─── APPEARANCE TAB ─── */}
+                {activeTab === 'APPEARANCE' && (
+                    <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.06)' }}>
+                        <h3 style={{ margin: '0 0 1.25rem 0', fontSize: '1.1rem', fontWeight: 800, color: 'var(--theme-primary)' }}>🎨 Thème de l'Application</h3>
+                        <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.4)', marginBottom: '1.5rem' }}>Sélectionnez l'ambiance visuelle pour les écrans et la TV.</p>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1rem' }}>
+                            {[
+                                { id: 'emerald', label: 'Emerald', colors: ['#2ecc71', '#0d1218'] },
+                                { id: 'ocean', label: 'Ocean', colors: ['#00d2ff', '#0f2027'] },
+                                { id: 'sunset', label: 'Sunset', colors: ['#ff4e50', '#2c1626'] },
+                                { id: 'midnight', label: 'Midnight', colors: ['#7f8fa6', '#111111'] },
+                            ].map(t => (
+                                <button
+                                    key={t.id}
+                                    onClick={() => saveAppTheme(t.id)}
+                                    style={{
+                                        position: 'relative',
+                                        background: `linear-gradient(135deg, ${t.colors[1]}, #000)`,
+                                        border: `2px solid ${appTheme === t.id ? t.colors[0] : 'rgba(255,255,255,0.1)'}`,
+                                        borderRadius: '12px',
+                                        padding: '1.5rem 1rem',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.3s ease',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        gap: '0.8rem',
+                                        boxShadow: appTheme === t.id ? `0 0 15px ${t.colors[0]}40` : 'none'
+                                    }}
+                                >
+                                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: t.colors[0], boxShadow: `0 0 10px ${t.colors[0]}`, opacity: 0.9 }} />
+                                    <span style={{ color: appTheme === t.id ? '#fff' : 'rgba(255,255,255,0.5)', fontWeight: 700 }}>{t.label}</span>
+                                    {appTheme === t.id && (
+                                        <div style={{ position: 'absolute', top: '8px', right: '8px', color: t.colors[0] }}>✓</div>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 )}
 
                 {/* Footer */}

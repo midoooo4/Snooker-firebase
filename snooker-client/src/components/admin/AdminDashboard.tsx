@@ -476,24 +476,64 @@ export default function AdminDashboard() {
                                         borderRadius: '16px', 
                                         border: '1px solid rgba(255,255,255,0.05)', 
                                         display: 'flex', 
-                                        justifyContent: 'space-between', 
-                                        alignItems: 'center' 
+                                        justifyContent: 'flex-start', 
+                                        alignItems: 'center',
+                                        gap: '2rem',
+                                        flexWrap: 'wrap'
                                     }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flex: 1 }}>
-                                            <div style={{ textAlign: 'right', minWidth: '120px' }}>
+                                        {/* Players Section */}
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', minWidth: '280px' }}>
+                                            <div style={{ textAlign: 'right', flex: 1 }}>
                                                 <div style={{ color: '#2ecc71', fontWeight: 900, fontSize: '1.1rem' }}>{m.winner}</div>
                                                 <div style={{ color: 'rgba(46,204,113,0.4)', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase' }}>GAGNANT</div>
                                             </div>
                                             <span style={{ color: 'rgba(255,255,255,0.1)', fontWeight: 900, fontSize: '0.9rem' }}>VS</span>
-                                            <div style={{ minWidth: '120px' }}>
+                                            <div style={{ textAlign: 'left', flex: 1 }}>
                                                 <div style={{ color: '#e74c3c', fontWeight: 900, fontSize: '1.1rem' }}>{m.loser}</div>
                                                 <div style={{ color: 'rgba(231,76,60,0.4)', fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase' }}>PERDANT</div>
                                             </div>
                                         </div>
-                                        <div style={{ textAlign: 'right', borderLeft: '1px solid rgba(255,255,255,0.05)', paddingLeft: '1.5rem' }}>
-                                            <div style={{ color: '#f1c40f', fontWeight: 800, fontSize: '0.9rem' }}>{m.frames} Fr.</div>
-                                            <div style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.65rem', marginTop: '4px' }}>
+
+                                        {/* Vertical Separator */}
+                                        <div style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.05)' }} />
+
+                                        {/* Match Type Badge */}
+                                        <div style={{ minWidth: '80px', textAlign: 'center' }}>
+                                            <span style={{ 
+                                                background: 'rgba(52,152,219,0.15)', 
+                                                color: '#3498db', 
+                                                padding: '4px 8px', 
+                                                borderRadius: '6px', 
+                                                fontSize: '0.65rem', 
+                                                fontWeight: 800,
+                                                border: '1px solid rgba(52,152,219,0.3)',
+                                                textTransform: 'uppercase'
+                                            }}>
+                                                {m.matchType === 'FRAME_UNIQUE' ? 'Unique' : m.matchType === 'BEST_OF_3' ? 'BO3' : m.matchType || 'Normal'}
+                                            </span>
+                                        </div>
+
+                                        {/* Vertical Separator */}
+                                        <div style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.05)' }} />
+
+                                        {/* Frames & Price Info */}
+                                        <div style={{ textAlign: 'center', minWidth: '70px' }}>
+                                            <div style={{ color: '#f1c40f', fontWeight: 800, fontSize: '1rem' }}>{m.frames} Fr.</div>
+                                            <div style={{ color: 'rgba(241,196,15,0.6)', fontSize: '0.65rem', fontWeight: 700, marginTop: '2px' }}>
+                                                {m.frames * pricePerFrame} DH
+                                            </div>
+                                        </div>
+
+                                        {/* Vertical Separator */}
+                                        <div style={{ width: '1px', height: '30px', background: 'rgba(255,255,255,0.05)' }} />
+
+                                        {/* Timestamp Info */}
+                                        <div style={{ textAlign: 'left' }}>
+                                            <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem', fontWeight: 700 }}>
                                                 {new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </div>
+                                            <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.65rem', marginTop: '2px', fontWeight: 600 }}>
+                                                {new Date(m.timestamp).toLocaleDateString([], { day: '2-digit', month: 'short' })}
                                             </div>
                                         </div>
                                     </div>
